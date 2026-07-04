@@ -9,38 +9,196 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ViewSlugRouteImport } from './routes/view.$slug'
+import { Route as AuthenticatedSettingsRouteImport } from './routes/_authenticated/settings'
+import { Route as AuthenticatedQrCodesRouteImport } from './routes/_authenticated/qr-codes'
+import { Route as AuthenticatedMenuRouteImport } from './routes/_authenticated/menu'
+import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
+import { Route as AuthenticatedCategoriesRouteImport } from './routes/_authenticated/categories'
+import { Route as AuthenticatedAnalyticsRouteImport } from './routes/_authenticated/analytics'
+import { Route as AuthenticatedMenuIndexRouteImport } from './routes/_authenticated/menu.index'
+import { Route as AuthenticatedMenuNewRouteImport } from './routes/_authenticated/menu.new'
+import { Route as AuthenticatedMenuIdEditRouteImport } from './routes/_authenticated/menu.$id.edit'
 
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ViewSlugRoute = ViewSlugRouteImport.update({
+  id: '/view/$slug',
+  path: '/view/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedSettingsRoute = AuthenticatedSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedQrCodesRoute = AuthenticatedQrCodesRouteImport.update({
+  id: '/qr-codes',
+  path: '/qr-codes',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedMenuRoute = AuthenticatedMenuRouteImport.update({
+  id: '/menu',
+  path: '/menu',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedCategoriesRoute = AuthenticatedCategoriesRouteImport.update({
+  id: '/categories',
+  path: '/categories',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedAnalyticsRoute = AuthenticatedAnalyticsRouteImport.update({
+  id: '/analytics',
+  path: '/analytics',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedMenuIndexRoute = AuthenticatedMenuIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AuthenticatedMenuRoute,
+} as any)
+const AuthenticatedMenuNewRoute = AuthenticatedMenuNewRouteImport.update({
+  id: '/new',
+  path: '/new',
+  getParentRoute: () => AuthenticatedMenuRoute,
+} as any)
+const AuthenticatedMenuIdEditRoute = AuthenticatedMenuIdEditRouteImport.update({
+  id: '/$id/edit',
+  path: '/$id/edit',
+  getParentRoute: () => AuthenticatedMenuRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/analytics': typeof AuthenticatedAnalyticsRoute
+  '/categories': typeof AuthenticatedCategoriesRoute
+  '/dashboard': typeof AuthenticatedDashboardRoute
+  '/menu': typeof AuthenticatedMenuRouteWithChildren
+  '/qr-codes': typeof AuthenticatedQrCodesRoute
+  '/settings': typeof AuthenticatedSettingsRoute
+  '/view/$slug': typeof ViewSlugRoute
+  '/menu/new': typeof AuthenticatedMenuNewRoute
+  '/menu/': typeof AuthenticatedMenuIndexRoute
+  '/menu/$id/edit': typeof AuthenticatedMenuIdEditRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/analytics': typeof AuthenticatedAnalyticsRoute
+  '/categories': typeof AuthenticatedCategoriesRoute
+  '/dashboard': typeof AuthenticatedDashboardRoute
+  '/qr-codes': typeof AuthenticatedQrCodesRoute
+  '/settings': typeof AuthenticatedSettingsRoute
+  '/view/$slug': typeof ViewSlugRoute
+  '/menu/new': typeof AuthenticatedMenuNewRoute
+  '/menu': typeof AuthenticatedMenuIndexRoute
+  '/menu/$id/edit': typeof AuthenticatedMenuIdEditRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
+  '/auth': typeof AuthRoute
+  '/_authenticated/analytics': typeof AuthenticatedAnalyticsRoute
+  '/_authenticated/categories': typeof AuthenticatedCategoriesRoute
+  '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
+  '/_authenticated/menu': typeof AuthenticatedMenuRouteWithChildren
+  '/_authenticated/qr-codes': typeof AuthenticatedQrCodesRoute
+  '/_authenticated/settings': typeof AuthenticatedSettingsRoute
+  '/view/$slug': typeof ViewSlugRoute
+  '/_authenticated/menu/new': typeof AuthenticatedMenuNewRoute
+  '/_authenticated/menu/': typeof AuthenticatedMenuIndexRoute
+  '/_authenticated/menu/$id/edit': typeof AuthenticatedMenuIdEditRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/auth'
+    | '/analytics'
+    | '/categories'
+    | '/dashboard'
+    | '/menu'
+    | '/qr-codes'
+    | '/settings'
+    | '/view/$slug'
+    | '/menu/new'
+    | '/menu/'
+    | '/menu/$id/edit'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/auth'
+    | '/analytics'
+    | '/categories'
+    | '/dashboard'
+    | '/qr-codes'
+    | '/settings'
+    | '/view/$slug'
+    | '/menu/new'
+    | '/menu'
+    | '/menu/$id/edit'
+  id:
+    | '__root__'
+    | '/'
+    | '/_authenticated'
+    | '/auth'
+    | '/_authenticated/analytics'
+    | '/_authenticated/categories'
+    | '/_authenticated/dashboard'
+    | '/_authenticated/menu'
+    | '/_authenticated/qr-codes'
+    | '/_authenticated/settings'
+    | '/view/$slug'
+    | '/_authenticated/menu/new'
+    | '/_authenticated/menu/'
+    | '/_authenticated/menu/$id/edit'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
+  AuthRoute: typeof AuthRoute
+  ViewSlugRoute: typeof ViewSlugRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,22 +206,121 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/view/$slug': {
+      id: '/view/$slug'
+      path: '/view/$slug'
+      fullPath: '/view/$slug'
+      preLoaderRoute: typeof ViewSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/settings': {
+      id: '/_authenticated/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof AuthenticatedSettingsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/qr-codes': {
+      id: '/_authenticated/qr-codes'
+      path: '/qr-codes'
+      fullPath: '/qr-codes'
+      preLoaderRoute: typeof AuthenticatedQrCodesRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/menu': {
+      id: '/_authenticated/menu'
+      path: '/menu'
+      fullPath: '/menu'
+      preLoaderRoute: typeof AuthenticatedMenuRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/dashboard': {
+      id: '/_authenticated/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof AuthenticatedDashboardRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/categories': {
+      id: '/_authenticated/categories'
+      path: '/categories'
+      fullPath: '/categories'
+      preLoaderRoute: typeof AuthenticatedCategoriesRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/analytics': {
+      id: '/_authenticated/analytics'
+      path: '/analytics'
+      fullPath: '/analytics'
+      preLoaderRoute: typeof AuthenticatedAnalyticsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/menu/': {
+      id: '/_authenticated/menu/'
+      path: '/'
+      fullPath: '/menu/'
+      preLoaderRoute: typeof AuthenticatedMenuIndexRouteImport
+      parentRoute: typeof AuthenticatedMenuRoute
+    }
+    '/_authenticated/menu/new': {
+      id: '/_authenticated/menu/new'
+      path: '/new'
+      fullPath: '/menu/new'
+      preLoaderRoute: typeof AuthenticatedMenuNewRouteImport
+      parentRoute: typeof AuthenticatedMenuRoute
+    }
+    '/_authenticated/menu/$id/edit': {
+      id: '/_authenticated/menu/$id/edit'
+      path: '/$id/edit'
+      fullPath: '/menu/$id/edit'
+      preLoaderRoute: typeof AuthenticatedMenuIdEditRouteImport
+      parentRoute: typeof AuthenticatedMenuRoute
+    }
   }
 }
 
+interface AuthenticatedMenuRouteChildren {
+  AuthenticatedMenuNewRoute: typeof AuthenticatedMenuNewRoute
+  AuthenticatedMenuIndexRoute: typeof AuthenticatedMenuIndexRoute
+  AuthenticatedMenuIdEditRoute: typeof AuthenticatedMenuIdEditRoute
+}
+
+const AuthenticatedMenuRouteChildren: AuthenticatedMenuRouteChildren = {
+  AuthenticatedMenuNewRoute: AuthenticatedMenuNewRoute,
+  AuthenticatedMenuIndexRoute: AuthenticatedMenuIndexRoute,
+  AuthenticatedMenuIdEditRoute: AuthenticatedMenuIdEditRoute,
+}
+
+const AuthenticatedMenuRouteWithChildren =
+  AuthenticatedMenuRoute._addFileChildren(AuthenticatedMenuRouteChildren)
+
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedAnalyticsRoute: typeof AuthenticatedAnalyticsRoute
+  AuthenticatedCategoriesRoute: typeof AuthenticatedCategoriesRoute
+  AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
+  AuthenticatedMenuRoute: typeof AuthenticatedMenuRouteWithChildren
+  AuthenticatedQrCodesRoute: typeof AuthenticatedQrCodesRoute
+  AuthenticatedSettingsRoute: typeof AuthenticatedSettingsRoute
+}
+
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedAnalyticsRoute: AuthenticatedAnalyticsRoute,
+  AuthenticatedCategoriesRoute: AuthenticatedCategoriesRoute,
+  AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
+  AuthenticatedMenuRoute: AuthenticatedMenuRouteWithChildren,
+  AuthenticatedQrCodesRoute: AuthenticatedQrCodesRoute,
+  AuthenticatedSettingsRoute: AuthenticatedSettingsRoute,
+}
+
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
+  AuthRoute: AuthRoute,
+  ViewSlugRoute: ViewSlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
