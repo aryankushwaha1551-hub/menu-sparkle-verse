@@ -14,7 +14,230 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      categories: {
+        Row: {
+          created_at: string
+          emoji: string | null
+          id: string
+          name: string
+          restaurant_id: string
+        }
+        Insert: {
+          created_at?: string
+          emoji?: string | null
+          id?: string
+          name: string
+          restaurant_id: string
+        }
+        Update: {
+          created_at?: string
+          emoji?: string | null
+          id?: string
+          name?: string
+          restaurant_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "categories_restaurant_id_fkey"
+            columns: ["restaurant_id"]
+            isOneToOne: false
+            referencedRelation: "restaurants"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      menu_items: {
+        Row: {
+          category_id: string | null
+          created_at: string
+          description: string | null
+          glb_url: string | null
+          id: string
+          is_available: boolean
+          is_featured: boolean
+          is_veg: boolean
+          name: string
+          prep_time: string | null
+          price: number
+          restaurant_id: string
+          slug: string
+          spice_level: string
+          thumbnail_url: string | null
+          usdz_url: string | null
+        }
+        Insert: {
+          category_id?: string | null
+          created_at?: string
+          description?: string | null
+          glb_url?: string | null
+          id?: string
+          is_available?: boolean
+          is_featured?: boolean
+          is_veg?: boolean
+          name: string
+          prep_time?: string | null
+          price?: number
+          restaurant_id: string
+          slug: string
+          spice_level?: string
+          thumbnail_url?: string | null
+          usdz_url?: string | null
+        }
+        Update: {
+          category_id?: string | null
+          created_at?: string
+          description?: string | null
+          glb_url?: string | null
+          id?: string
+          is_available?: boolean
+          is_featured?: boolean
+          is_veg?: boolean
+          name?: string
+          prep_time?: string | null
+          price?: number
+          restaurant_id?: string
+          slug?: string
+          spice_level?: string
+          thumbnail_url?: string | null
+          usdz_url?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "menu_items_category_id_fkey"
+            columns: ["category_id"]
+            isOneToOne: false
+            referencedRelation: "categories"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "menu_items_restaurant_id_fkey"
+            columns: ["restaurant_id"]
+            isOneToOne: false
+            referencedRelation: "restaurants"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      qr_codes: {
+        Row: {
+          created_at: string
+          id: string
+          menu_item_id: string
+          qr_data_url: string | null
+          restaurant_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          menu_item_id: string
+          qr_data_url?: string | null
+          restaurant_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          menu_item_id?: string
+          qr_data_url?: string | null
+          restaurant_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "qr_codes_menu_item_id_fkey"
+            columns: ["menu_item_id"]
+            isOneToOne: false
+            referencedRelation: "menu_items"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "qr_codes_restaurant_id_fkey"
+            columns: ["restaurant_id"]
+            isOneToOne: false
+            referencedRelation: "restaurants"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      restaurants: {
+        Row: {
+          address: string | null
+          created_at: string
+          email: string | null
+          id: string
+          instagram: string | null
+          logo_url: string | null
+          name: string
+          opening_hours: string | null
+          phone: string | null
+          user_id: string
+          website: string | null
+        }
+        Insert: {
+          address?: string | null
+          created_at?: string
+          email?: string | null
+          id?: string
+          instagram?: string | null
+          logo_url?: string | null
+          name?: string
+          opening_hours?: string | null
+          phone?: string | null
+          user_id: string
+          website?: string | null
+        }
+        Update: {
+          address?: string | null
+          created_at?: string
+          email?: string | null
+          id?: string
+          instagram?: string | null
+          logo_url?: string | null
+          name?: string
+          opening_hours?: string | null
+          phone?: string | null
+          user_id?: string
+          website?: string | null
+        }
+        Relationships: []
+      }
+      scans: {
+        Row: {
+          device_type: string | null
+          id: string
+          menu_item_id: string
+          restaurant_id: string
+          scanned_at: string
+        }
+        Insert: {
+          device_type?: string | null
+          id?: string
+          menu_item_id: string
+          restaurant_id: string
+          scanned_at?: string
+        }
+        Update: {
+          device_type?: string | null
+          id?: string
+          menu_item_id?: string
+          restaurant_id?: string
+          scanned_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "scans_menu_item_id_fkey"
+            columns: ["menu_item_id"]
+            isOneToOne: false
+            referencedRelation: "menu_items"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "scans_restaurant_id_fkey"
+            columns: ["restaurant_id"]
+            isOneToOne: false
+            referencedRelation: "restaurants"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
