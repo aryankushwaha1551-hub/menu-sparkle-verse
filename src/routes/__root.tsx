@@ -82,9 +82,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "description", content: "Bring your menu to life in 3D and Augmented Reality. Upload dishes, generate QR codes, let customers explore every plate before they order." },
       { name: "author", content: "MenuVerse" },
       { property: "og:title", content: "MenuVerse — 3D Digital Menus for Restaurants" },
-      { property: "og:description", content: "Interactive 3D & AR menus for restaurants, cafes and cloud kitchens in India." },
+      { property: "og:description", content: "Bring your menu to life in 3D and Augmented Reality. Upload dishes, generate QR codes, let customers explore every plate before they order." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "MenuVerse — 3D Digital Menus for Restaurants" },
+      { name: "twitter:description", content: "Bring your menu to life in 3D and Augmented Reality. Upload dishes, generate QR codes, let customers explore every plate before they order." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/8385cbab-89a9-41c3-b457-822cea4b7278/id-preview-816aa462--a16d1b2c-b683-4bba-82a3-b4304bacdb55.lovable.app-1784024804870.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/8385cbab-89a9-41c3-b457-822cea4b7278/id-preview-816aa462--a16d1b2c-b683-4bba-82a3-b4304bacdb55.lovable.app-1784024804870.png" },
     ],
     links: [
       {
