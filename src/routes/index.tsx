@@ -1,8 +1,8 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
-  Sparkles, QrCode, ScanLine, Check, ArrowRight, Utensils,
+  Sparkles, ScanLine, Check, ArrowRight, Utensils,
   Smartphone, Nfc, Palette, Settings2, ClipboardList, PackageCheck,
   RefreshCw, Rocket, Send, Eye, ChefHat, Building2, Hotel, Cake,
   Truck, Store, ShieldCheck, Layers, HandMetal,
