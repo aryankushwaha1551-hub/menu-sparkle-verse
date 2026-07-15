@@ -11,7 +11,6 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
-import { Route as IndexRouteImport } from './routes/index'
 import { Route as ViewSlugRouteImport } from './routes/view.$slug'
 import { Route as AuthenticatedSettingsRouteImport } from './routes/_authenticated/settings'
 import { Route as AuthenticatedQrCodesRouteImport } from './routes/_authenticated/qr-codes'
@@ -30,11 +29,6 @@ const AuthRoute = AuthRouteImport.update({
 } as any)
 const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
   id: '/_authenticated',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ViewSlugRoute = ViewSlugRouteImport.update({
@@ -89,7 +83,7 @@ const AuthenticatedMenuIdEditRoute = AuthenticatedMenuIdEditRouteImport.update({
 } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
+  '/': typeof AuthenticatedRouteRouteWithChildren
   '/auth': typeof AuthRoute
   '/analytics': typeof AuthenticatedAnalyticsRoute
   '/categories': typeof AuthenticatedCategoriesRoute
@@ -103,7 +97,7 @@ export interface FileRoutesByFullPath {
   '/menu/$id/edit': typeof AuthenticatedMenuIdEditRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
+  '/': typeof AuthenticatedRouteRouteWithChildren
   '/auth': typeof AuthRoute
   '/analytics': typeof AuthenticatedAnalyticsRoute
   '/categories': typeof AuthenticatedCategoriesRoute
@@ -117,7 +111,6 @@ export interface FileRoutesByTo {
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/auth': typeof AuthRoute
   '/_authenticated/analytics': typeof AuthenticatedAnalyticsRoute
@@ -161,7 +154,6 @@ export interface FileRouteTypes {
     | '/menu/$id/edit'
   id:
     | '__root__'
-    | '/'
     | '/_authenticated'
     | '/auth'
     | '/_authenticated/analytics'
@@ -177,7 +169,6 @@ export interface FileRouteTypes {
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
   AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
   AuthRoute: typeof AuthRoute
   ViewSlugRoute: typeof ViewSlugRoute
@@ -197,13 +188,6 @@ declare module '@tanstack/react-router' {
       path: ''
       fullPath: '/'
       preLoaderRoute: typeof AuthenticatedRouteRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/view/$slug': {
@@ -316,7 +300,6 @@ const AuthenticatedRouteRouteWithChildren =
   AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
   AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
   AuthRoute: AuthRoute,
   ViewSlugRoute: ViewSlugRoute,
