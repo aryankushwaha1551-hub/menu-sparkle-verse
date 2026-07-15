@@ -1,509 +1,844 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
-  Sparkles, QrCode, ScanLine, BarChart3, Check, ArrowRight,
-  Utensils, Smartphone, Eye, TrendingUp, Clock, Leaf,
+  Sparkles, ScanLine, Check, ArrowRight, Utensils,
+  Smartphone, Nfc, Palette, Settings2, ClipboardList, PackageCheck,
+  RefreshCw, Rocket, Send, Eye, ChefHat, Building2, Hotel, Cake,
+  Truck, Store, ShieldCheck, Layers, HandMetal,
 } from "lucide-react";
 
+import heroDish from "@/assets/hero-dish.jpg";
+import phoneDish from "@/assets/phone-dish.jpg";
+import nfcCard from "@/assets/nfc-card.jpg";
+import tapNfc from "@/assets/tap-nfc.jpg";
+import arTable from "@/assets/ar-table.jpg";
+import restaurantInterior from "@/assets/restaurant-interior.jpg";
+import ownerAnalytics from "@/assets/owner-analytics.jpg";
+
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "MenuVerse — Done-for-you 3D & AR Menus for Restaurants" },
+      {
+        name: "description",
+        content:
+          "MenuVerse creates a complete interactive 3D & AR menu experience for your restaurant — branded NFC + QR table cards, setup, hosting and maintenance handled by our team.",
+      },
+    ],
+  }),
   component: Landing,
 });
 
 function Landing() {
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <header className="fixed top-0 left-0 right-0 z-50 glass">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 md:px-6 py-3 md:py-4">
-          <Link to="/" className="font-display text-xl md:text-2xl font-semibold peach-text tracking-wide">
+      <Nav />
+      <Hero />
+      <Delivers />
+      <NfcSection />
+      <HowItWorks />
+      <InteractiveDemo />
+      <RestaurantBenefits />
+      <Analytics />
+      <Packages />
+      <TrustSection />
+      <FinalCta />
+      <ContactForm />
+      <Footer />
+      <StickyQuote />
+    </div>
+  );
+}
+
+/* ---------------- NAV ---------------- */
+function Nav() {
+  const [scrolled, setScrolled] = useState(false);
+  useEffect(() => {
+    const on = () => setScrolled(window.scrollY > 24);
+    on();
+    window.addEventListener("scroll", on, { passive: true });
+    return () => window.removeEventListener("scroll", on);
+  }, []);
+  const links = [
+    { href: "#experience", label: "Experience" },
+    { href: "#how", label: "How It Works" },
+    { href: "#nfc", label: "NFC + QR" },
+    { href: "#packages", label: "Packages" },
+    { href: "#contact", label: "Contact" },
+  ];
+  return (
+    <header
+      className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? "backdrop-blur-xl bg-[color:var(--background)]/75 border-b border-[color:var(--sage)]/15"
+          : "bg-transparent"
+      }`}
+    >
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 md:px-6 py-3.5 md:py-4">
+        <a href="#top" className="flex items-center gap-2">
+          <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-[color:var(--peach)]/15 border border-[color:var(--peach)]/30">
+            <Utensils className="h-4 w-4 peach-text" />
+          </span>
+          <span className="font-display text-xl md:text-2xl font-semibold cream-text tracking-wide">
             MenuVerse
-          </Link>
-          <nav className="hidden gap-8 text-sm text-muted-foreground md:flex">
-            <a href="#benefits" className="transition-colors hover:text-foreground">Benefits</a>
-            <a href="#demo" className="transition-colors hover:text-foreground">Live demo</a>
-            <a href="#how" className="transition-colors hover:text-foreground">How it works</a>
-            <a href="#analytics" className="transition-colors hover:text-foreground">Analytics</a>
-            <a href="#pricing" className="transition-colors hover:text-foreground">Pricing</a>
-          </nav>
-          <div className="flex items-center gap-1 md:gap-2">
-            <Link to="/auth" className="hidden sm:block">
-              <Button variant="ghost" className="text-foreground hover:text-primary">Sign in</Button>
-            </Link>
-            <Link to="/auth">
-              <Button className="bg-primary text-primary-foreground hover:opacity-90 gold-glow rounded-full px-4 md:px-5">
-                Start free
+          </span>
+        </a>
+        <nav className="hidden lg:flex items-center gap-8 text-sm text-[color:var(--muted-foreground)]">
+          {links.map((l) => (
+            <a key={l.href} href={l.href} className="hover:text-[color:var(--cream)] transition-colors">
+              {l.label}
+            </a>
+          ))}
+        </nav>
+        <div className="flex items-center gap-2">
+          <a href="#demo" className="hidden sm:block">
+            <Button variant="ghost" className="text-[color:var(--cream)] hover:text-[color:var(--peach)]">
+              View Demo
+            </Button>
+          </a>
+          <a href="#contact">
+            <Button className="bg-[color:var(--peach)] text-[color:var(--primary-foreground)] hover:bg-[color:var(--peach-hover)] rounded-full px-4 md:px-5 font-medium">
+              Get a Quote
+            </Button>
+          </a>
+        </div>
+      </div>
+    </header>
+  );
+}
+
+/* ---------------- HERO ---------------- */
+function Hero() {
+  return (
+    <section id="top" className="relative overflow-hidden pt-32 md:pt-40 pb-16 md:pb-24">
+      <div className="absolute inset-0 opacity-40 gold-grid-bg" />
+      <div className="absolute inset-x-0 top-1/4 h-[520px] bg-[radial-gradient(ellipse_at_center,_color-mix(in_oklab,_var(--peach)_16%,_transparent),_transparent_65%)]" />
+      <div className="relative mx-auto grid max-w-7xl grid-cols-1 gap-14 px-4 md:px-6 lg:grid-cols-[1.05fr_1fr] lg:items-center">
+        <div className="text-center lg:text-left">
+          <div className="inline-flex items-center gap-2 rounded-full glass px-3.5 py-1.5 text-[11px] uppercase tracking-[0.18em] sage-text mb-5">
+            <Sparkles className="h-3 w-3" /> Done-for-you · 3D · AR · NFC + QR
+          </div>
+          <h1 className="font-display text-[2.4rem] leading-[1.05] sm:text-5xl md:text-6xl xl:text-7xl font-semibold cream-text">
+            Let guests <span className="italic peach-text">experience</span> every dish before they order.
+          </h1>
+          <p className="mx-auto lg:mx-0 mt-6 max-w-xl text-base md:text-lg text-[color:var(--muted-foreground)] leading-relaxed">
+            Send us your dish photos and MenuVerse will create your complete interactive 3D and AR menu —
+            including branded NFC + QR table cards, setup, hosting and maintenance.
+          </p>
+          <div className="mt-8 flex flex-wrap items-center justify-center lg:justify-start gap-3">
+            <a href="#contact">
+              <Button size="lg" className="bg-[color:var(--peach)] text-[color:var(--primary-foreground)] hover:bg-[color:var(--peach-hover)] gold-glow rounded-full px-7 h-12 text-base font-semibold">
+                Get a Quote <ArrowRight className="ml-1 h-4 w-4" />
               </Button>
-            </Link>
+            </a>
+            <a href="#demo">
+              <Button size="lg" variant="outline" className="rounded-full px-7 h-12 text-base border-[color:var(--sage)]/50 text-[color:var(--cream)] hover:bg-[color:var(--sage)]/10 bg-transparent">
+                View Live Demo
+              </Button>
+            </a>
           </div>
-        </div>
-      </header>
-
-      {/* HERO */}
-      <section className="relative overflow-hidden pt-32 md:pt-36 pb-16 md:pb-24">
-        <div className="absolute inset-0 gold-grid-bg opacity-30" />
-        <div className="absolute inset-x-0 top-1/3 -translate-y-1/2 h-[520px] bg-[radial-gradient(ellipse_at_center,_color-mix(in_oklab,_var(--peach)_18%,_transparent),_transparent_65%)]" />
-        <div className="relative mx-auto grid max-w-7xl grid-cols-1 gap-12 px-4 md:px-6 lg:grid-cols-[1.05fr_1fr] lg:items-center">
-          <div className="text-center lg:text-left">
-            <div className="mb-5 inline-flex items-center gap-2 rounded-full glass px-3.5 py-1.5 text-[11px] uppercase tracking-[0.18em] peach-text">
-              <Sparkles className="h-3 w-3" /> 3D · AR · QR menus for India
-            </div>
-            <h1 className="font-display text-[2.5rem] leading-[1.05] sm:text-5xl md:text-6xl xl:text-7xl font-semibold">
-              Every dish, <span className="italic peach-text">served</span> in 3D — before it hits the table.
-            </h1>
-            <p className="mx-auto lg:mx-0 mt-5 max-w-xl text-base md:text-lg text-muted-foreground leading-relaxed">
-              Guests scan a QR, spin your dish in photoreal 3D, and place it on their own table in AR.
-              Built for restaurants, cafés, hotels and cloud kitchens across India.
-            </p>
-            <div className="mt-8 flex flex-wrap items-center justify-center lg:justify-start gap-3">
-              <Link to="/auth">
-                <Button size="lg" className="bg-primary text-primary-foreground hover:opacity-90 gold-glow rounded-full px-7 h-12 text-base">
-                  Start free <ArrowRight className="ml-1 h-4 w-4" />
-                </Button>
-              </Link>
-              <a href="#demo">
-                <Button size="lg" variant="outline" className="rounded-full px-7 h-12 text-base border-[color:var(--sage)]/50 text-foreground hover:bg-[color:var(--sage)]/10">
-                  See a live dish
-                </Button>
-              </a>
-            </div>
-            <p className="mt-5 text-xs uppercase tracking-[0.2em] text-muted-foreground">
-              No credit card · Live in 5 minutes · Works on every phone
-            </p>
-          </div>
-
-          <HeroDemo />
-        </div>
-      </section>
-
-      {/* PRODUCT BENEFITS */}
-      <section id="benefits" className="mx-auto max-w-7xl px-4 md:px-6 py-20 md:py-24">
-        <div className="mx-auto max-w-2xl text-center mb-12">
-          <p className="text-xs uppercase tracking-[0.22em] sage-text mb-3">Why MenuVerse</p>
-          <h2 className="font-display text-3xl md:text-5xl font-semibold">Menus that sell themselves.</h2>
-          <p className="mt-4 text-muted-foreground text-base md:text-lg">
-            Diners order more of what they can actually see. Here's what changes on day one.
+          <p className="mt-5 text-xs uppercase tracking-[0.2em] text-[color:var(--muted-foreground)]">
+            Done-for-you setup · No technical work required
           </p>
         </div>
-        <div className="grid gap-5 md:gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {[
-            { icon: TrendingUp, stat: "+38%", label: "Higher ticket size", desc: "3D previews shift diners toward premium plates and signature dishes." },
-            { icon: Clock, stat: "2 min", label: "Faster ordering", desc: "No questions, no callbacks — guests decide the moment they scan." },
-            { icon: Leaf, stat: "0", label: "App downloads needed", desc: "AR runs directly in Safari and Chrome. Just scan and place." },
-          ].map((b) => (
-            <div key={b.label} className="glass rounded-3xl p-6 md:p-7 transition-all hover:-translate-y-1 hover:sage-glow">
-              <div className="flex items-center justify-between">
-                <div className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-[color:var(--sage)]/15 sage-text">
-                  <b.icon className="h-5 w-5" />
-                </div>
-                <div className="font-display text-3xl md:text-4xl peach-text">{b.stat}</div>
-              </div>
-              <h3 className="mt-5 text-lg font-semibold cream-text">{b.label}</h3>
-              <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{b.desc}</p>
-            </div>
-          ))}
-        </div>
-      </section>
 
-      {/* INTERACTIVE 3D DEMO */}
-      <section id="demo" className="relative mx-auto max-w-7xl px-4 md:px-6 py-20 md:py-24">
-        <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
+        <HeroCollage />
+      </div>
+    </section>
+  );
+}
+
+function HeroCollage() {
+  return (
+    <div className="relative mx-auto w-full max-w-[560px] aspect-[5/6] lg:aspect-[6/7]">
+      {/* Dish photo */}
+      <div className="absolute left-0 top-0 w-[62%] rounded-3xl overflow-hidden border border-[color:var(--sage)]/25 shadow-2xl">
+        <img src={heroDish} alt="Signature restaurant dish" width={800} height={800} className="w-full h-auto object-cover anim-float" />
+      </div>
+      {/* Phone showing interactive dish */}
+      <div className="absolute right-0 top-[18%] w-[46%] rounded-[28px] overflow-hidden border border-[color:var(--sage)]/30 shadow-2xl sage-glow">
+        <img src={phoneDish} alt="Smartphone showing the interactive MenuVerse dish" width={512} height={640} loading="lazy" className="w-full h-auto object-cover" />
+      </div>
+      {/* NFC card */}
+      <div className="absolute left-[6%] bottom-0 w-[54%] rounded-2xl overflow-hidden border border-[color:var(--sage)]/25 shadow-xl">
+        <img src={nfcCard} alt="Branded MenuVerse NFC and QR table card" width={640} height={480} loading="lazy" className="w-full h-auto object-cover" />
+      </div>
+      {/* Flow arrow chip */}
+      <div className="absolute right-[4%] bottom-[4%] glass rounded-full px-3 py-1.5 text-[10px] uppercase tracking-widest sage-text flex items-center gap-1.5">
+        <ScanLine className="h-3 w-3" /> Tap · Scan · Explore
+      </div>
+    </div>
+  );
+}
+
+/* ---------------- WHAT WE DELIVER ---------------- */
+function Delivers() {
+  const items = [
+    { icon: ChefHat,    title: "Interactive Signature Dishes", desc: "Guests can rotate, zoom and explore selected dishes before ordering." },
+    { icon: Palette,    title: "Branded Digital Menu",         desc: "A premium menu experience designed around your restaurant's identity." },
+    { icon: Nfc,        title: "NFC + QR Table Cards",         desc: "Guests simply tap or scan to open the experience instantly." },
+    { icon: Settings2,  title: "Setup and Maintenance",        desc: "We handle launch, hosting, updates and ongoing support." },
+  ];
+  return (
+    <section id="experience" className="mx-auto max-w-7xl px-4 md:px-6 py-20 md:py-28">
+      <div className="mx-auto max-w-2xl text-center mb-14">
+        <p className="text-xs uppercase tracking-[0.22em] sage-text mb-3">What MenuVerse delivers</p>
+        <h2 className="font-display text-3xl md:text-5xl font-semibold cream-text">
+          Everything your restaurant needs, <span className="italic peach-text">handled by us.</span>
+        </h2>
+      </div>
+      <div className="grid gap-5 md:gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {items.map((it, i) => (
+          <div key={it.title} className="glass rounded-3xl p-6 md:p-7 transition-all hover:-translate-y-1 hover:sage-glow flex flex-col">
+            <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-[color:var(--sage)]/15 sage-text mb-5 border border-[color:var(--sage)]/25">
+              <it.icon className="h-5 w-5" />
+            </div>
+            <h3 className="font-display text-xl cream-text mb-2">{it.title}</h3>
+            <p className="text-sm text-[color:var(--muted-foreground)] leading-relaxed flex-1">{it.desc}</p>
+            {i === 0 && (
+              <div className="mt-5 rounded-xl overflow-hidden border border-[color:var(--sage)]/20">
+                <img src={heroDish} alt="Signature dish preview" width={400} height={220} loading="lazy" className="w-full h-28 object-cover" />
+              </div>
+            )}
+            {i === 1 && (
+              <div className="mt-5 rounded-xl overflow-hidden border border-[color:var(--sage)]/20">
+                <img src={phoneDish} alt="Branded digital menu preview" width={400} height={220} loading="lazy" className="w-full h-28 object-cover" />
+              </div>
+            )}
+            {i === 2 && (
+              <div className="mt-5 rounded-xl overflow-hidden border border-[color:var(--sage)]/20">
+                <img src={nfcCard} alt="NFC and QR card preview" width={400} height={220} loading="lazy" className="w-full h-28 object-cover" />
+              </div>
+            )}
+            {i === 3 && (
+              <div className="mt-5 rounded-xl overflow-hidden border border-[color:var(--sage)]/20">
+                <img src={restaurantInterior} alt="Restaurant setup" width={400} height={220} loading="lazy" className="w-full h-28 object-cover" />
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+/* ---------------- NFC + QR SECTION ---------------- */
+function NfcSection() {
+  const bullets = [
+    "No app download required",
+    "Works directly from the guest's phone",
+    "Designed to match your restaurant's branding",
+    "QR backup included on every card",
+    "Menu can be updated without reprinting cards",
+  ];
+  return (
+    <section id="nfc" className="relative overflow-hidden">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_color-mix(in_oklab,_var(--sage)_14%,_transparent),_transparent_60%)]" />
+      <div className="relative mx-auto max-w-7xl px-4 md:px-6 py-20 md:py-28">
+        <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
           <div>
-            <p className="text-xs uppercase tracking-[0.22em] sage-text mb-3">Live 3D menu</p>
-            <h2 className="font-display text-3xl md:text-5xl font-semibold">
-              Spin it. Zoom it. <span className="italic peach-text">Almost taste it.</span>
+            <p className="text-xs uppercase tracking-[0.22em] sage-text mb-3">Branded NFC + QR table cards</p>
+            <h2 className="font-display text-3xl md:text-5xl font-semibold cream-text">
+              One tap. One scan. <span className="italic peach-text">A completely new menu experience.</span>
             </h2>
-            <p className="mt-4 text-muted-foreground md:text-lg leading-relaxed">
-              Every dish becomes an interactive model. Guests inspect garnishes, portion size and
-              plating from every angle — the way they'd survey a real table.
+            <p className="mt-5 text-[color:var(--muted-foreground)] text-base md:text-lg leading-relaxed">
+              Place a branded MenuVerse card on every table. Guests can tap using NFC or scan the QR code
+              to instantly explore your restaurant's signature dishes.
             </p>
-            <ul className="mt-6 space-y-3 text-sm md:text-base">
-              {[
-                "Photoreal GLB / USDZ models via Cloudinary",
-                "Drag to rotate, pinch to zoom — on any phone",
-                "Native AR: place the dish on the guest's real table",
-                "One-tap 'Order on WhatsApp' from every dish",
-              ].map((l) => (
-                <li key={l} className="flex items-start gap-3">
-                  <span className="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[color:var(--sage)]/20 sage-text">
-                    <Check className="h-3.5 w-3.5" />
+            <ul className="mt-7 grid sm:grid-cols-2 gap-3">
+              {bullets.map((b) => (
+                <li key={b} className="flex items-start gap-3 text-sm text-[color:var(--cream)]/90">
+                  <span className="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[color:var(--sage)]/20 border border-[color:var(--sage)]/40 sage-text">
+                    <Check className="h-3 w-3" />
                   </span>
-                  <span className="text-foreground/90">{l}</span>
+                  {b}
                 </li>
               ))}
             </ul>
           </div>
 
-          <DemoTurntable />
-        </div>
-      </section>
-
-      {/* HOW IT WORKS */}
-      <section id="how" className="mx-auto max-w-7xl px-4 md:px-6 py-20 md:py-24">
-        <div className="mx-auto max-w-2xl text-center mb-14">
-          <p className="text-xs uppercase tracking-[0.22em] sage-text mb-3">Setup</p>
-          <h2 className="font-display text-3xl md:text-5xl font-semibold">Three steps to a scannable menu.</h2>
-        </div>
-        <div className="grid gap-5 md:gap-6 md:grid-cols-3">
-          {[
-            { n: "01", icon: Utensils, title: "Upload your dish", desc: "Paste a Cloudinary link to your 3D model — GLB for Android, USDZ for iPhone." },
-            { n: "02", icon: QrCode,   title: "Print the QR", desc: "A unique, brand-styled QR is generated for every dish. Ready for menus, table tents and posters." },
-            { n: "03", icon: Smartphone, title: "Guests scan & explore", desc: "The dish opens instantly in 3D — no app, no login. AR is one tap away." },
-          ].map((s) => (
-            <div key={s.n} className="glass rounded-3xl p-7 md:p-8 relative overflow-hidden">
-              <div className="font-display text-[5.5rem] md:text-[6.5rem] leading-none font-semibold opacity-10 peach-text absolute -top-3 right-4 select-none">
-                {s.n}
-              </div>
-              <div className="relative inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-[color:var(--sage)]/15 sage-text mb-5">
-                <s.icon className="h-5 w-5" />
-              </div>
-              <h3 className="relative font-display text-xl md:text-2xl font-semibold">{s.title}</h3>
-              <p className="relative mt-2 text-sm md:text-base text-muted-foreground leading-relaxed">{s.desc}</p>
+          <div className="grid grid-cols-2 gap-4">
+            <div className="col-span-2 rounded-3xl overflow-hidden border border-[color:var(--sage)]/25 shadow-xl">
+              <img src={tapNfc} alt="Guest tapping phone on branded NFC table card" width={1280} height={720} loading="lazy" className="w-full h-auto object-cover" />
             </div>
-          ))}
-        </div>
-      </section>
-
-      {/* RESTAURANT ANALYTICS */}
-      <section id="analytics" className="mx-auto max-w-7xl px-4 md:px-6 py-20 md:py-24">
-        <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
-          <AnalyticsPreview />
-          <div className="order-first lg:order-last">
-            <p className="text-xs uppercase tracking-[0.22em] sage-text mb-3">Analytics</p>
-            <h2 className="font-display text-3xl md:text-5xl font-semibold">
-              See <span className="italic peach-text">what's being craved</span> — in real time.
-            </h2>
-            <p className="mt-4 text-muted-foreground md:text-lg leading-relaxed">
-              Track every scan, every 3D spin, every AR placement. Discover which dishes drive
-              orders and which ones need better plating — before Friday service.
-            </p>
-            <div className="mt-6 grid grid-cols-3 gap-3 text-center">
-              {[
-                { k: "Scans / day", v: "1,284" },
-                { k: "Top dish", v: "Butter Chicken" },
-                { k: "AR views", v: "62%" },
-              ].map((m) => (
-                <div key={m.k} className="rounded-2xl border border-[color:var(--sage)]/25 bg-card/40 p-3">
-                  <div className="text-[10px] uppercase tracking-widest text-muted-foreground">{m.k}</div>
-                  <div className="mt-1 font-display text-base md:text-lg cream-text">{m.v}</div>
-                </div>
-              ))}
+            <div className="rounded-3xl overflow-hidden border border-[color:var(--sage)]/25">
+              <img src={nfcCard} alt="Front of branded MenuVerse table card" width={640} height={480} loading="lazy" className="w-full h-full object-cover" />
+            </div>
+            <div className="rounded-3xl overflow-hidden border border-[color:var(--sage)]/25 sage-glow">
+              <img src={phoneDish} alt="Interactive menu opening on the phone" width={640} height={480} loading="lazy" className="w-full h-full object-cover" />
             </div>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
+  );
+}
 
-      {/* PRICING */}
-      <section id="pricing" className="mx-auto max-w-7xl px-4 md:px-6 py-20 md:py-24">
-        <div className="mx-auto max-w-2xl text-center mb-12">
-          <p className="text-xs uppercase tracking-[0.22em] sage-text mb-3">Pricing</p>
-          <h2 className="font-display text-3xl md:text-5xl font-semibold">Simple plans. Priced in ₹.</h2>
-          <p className="mt-4 text-muted-foreground md:text-lg">Choose the plan that fits your kitchen. Upgrade or cancel any time.</p>
-        </div>
-        <div className="grid gap-5 md:gap-6 md:grid-cols-3 items-stretch">
-          {[
-            { name: "Starter", price: "999", dishes: "Up to 10 dishes", features: ["QR generation", "3D & AR viewer", "Basic analytics", "Email support"] },
-            { name: "Professional", price: "2,499", dishes: "Up to 50 dishes", popular: true, features: ["Everything in Starter", "Priority AR rendering", "Advanced analytics", "Custom branding", "Priority support"] },
-            { name: "Enterprise", price: "4,999", dishes: "Unlimited dishes", features: ["Everything in Pro", "Multi-location", "Dedicated manager", "API access", "Uptime SLA"] },
-          ].map((p) => (
-            <div
-              key={p.name}
-              className={`glass rounded-3xl p-7 md:p-8 relative flex flex-col ${p.popular ? "gold-glow border-[color:var(--peach)]/50" : ""}`}
+/* ---------------- HOW IT WORKS ---------------- */
+function HowItWorks() {
+  const steps = [
+    { icon: Send,          n: "01", title: "Send Your Details",     desc: "Share your restaurant information, menu, and clear photos of the dishes you want to feature." },
+    { icon: PackageCheck,  n: "02", title: "Choose Your Package",   desc: "Select the number of dishes and table cards required, then confirm the project." },
+    { icon: ChefHat,       n: "03", title: "We Create Everything",  desc: "Our team prepares your complete branded interactive menu experience." },
+    { icon: Eye,           n: "04", title: "Review and Approve",    desc: "You review the menu and request any necessary corrections before launch." },
+    { icon: Rocket,        n: "05", title: "Launch at Your Restaurant", desc: "We provide the NFC + QR cards and activate the complete experience." },
+  ];
+  return (
+    <section id="how" className="mx-auto max-w-7xl px-4 md:px-6 py-20 md:py-28">
+      <div className="mx-auto max-w-2xl text-center mb-14">
+        <p className="text-xs uppercase tracking-[0.22em] sage-text mb-3">How it works</p>
+        <h2 className="font-display text-3xl md:text-5xl font-semibold cream-text">
+          From your dish photos to a <span className="italic peach-text">launched experience.</span>
+        </h2>
+      </div>
+
+      <ol className="relative">
+        {/* vertical line on md+ */}
+        <div className="hidden md:block absolute left-1/2 -translate-x-1/2 top-2 bottom-2 w-px bg-[color:var(--sage)]/25" />
+        <div className="space-y-6 md:space-y-14">
+          {steps.map((s, i) => (
+            <li
+              key={s.n}
+              className={`relative grid md:grid-cols-2 gap-6 md:gap-14 items-center ${
+                i % 2 === 1 ? "md:[&>*:first-child]:order-2" : ""
+              }`}
             >
-              {p.popular && (
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-primary px-3 py-1 text-[10px] font-semibold text-primary-foreground uppercase tracking-[0.18em]">
-                  Most popular
+              <div className="glass rounded-3xl p-6 md:p-8">
+                <div className="flex items-center gap-4">
+                  <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-[color:var(--peach)]/12 peach-text border border-[color:var(--peach)]/30">
+                    <s.icon className="h-5 w-5" />
+                  </div>
+                  <div className="font-display text-4xl peach-text opacity-70">{s.n}</div>
                 </div>
-              )}
-              <h3 className="font-display text-2xl font-semibold">{p.name}</h3>
-              <div className="mt-4">
-                <span className="text-4xl md:text-5xl font-semibold peach-text font-display">₹{p.price}</span>
-                <span className="text-muted-foreground text-sm">/month</span>
+                <h3 className="mt-5 font-display text-2xl cream-text">{s.title}</h3>
+                <p className="mt-2 text-[color:var(--muted-foreground)] leading-relaxed">{s.desc}</p>
               </div>
-              <p className="mt-2 text-sm text-muted-foreground">{p.dishes}</p>
-              <ul className="mt-6 space-y-3 text-sm flex-1">
-                {p.features.map((f) => (
-                  <li key={f} className="flex items-start gap-2.5">
-                    <Check className="h-4 w-4 mt-0.5 sage-text shrink-0" />
-                    <span>{f}</span>
-                  </li>
-                ))}
-              </ul>
-              <Link to="/auth" className="mt-8">
-                <Button
-                  className={`w-full rounded-full h-11 ${
-                    p.popular
-                      ? "bg-primary text-primary-foreground hover:opacity-90"
-                      : "bg-secondary text-foreground border border-[color:var(--sage)]/40 hover:bg-[color:var(--sage)]/10"
-                  }`}
-                >
-                  Get started
-                </Button>
-              </Link>
-            </div>
+              <div className="hidden md:flex items-center justify-center">
+                <span className="h-3 w-3 rounded-full bg-[color:var(--peach)] shadow-[0_0_0_6px_color-mix(in_oklab,var(--peach)_20%,transparent)]" />
+              </div>
+            </li>
           ))}
         </div>
-      </section>
+      </ol>
+    </section>
+  );
+}
 
-      {/* FINAL CTA */}
-      <section className="relative mx-auto max-w-6xl px-4 md:px-6 py-20 md:py-24">
-        <div className="relative overflow-hidden rounded-[2rem] glass p-8 md:p-14 text-center">
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_color-mix(in_oklab,_var(--peach)_20%,_transparent),_transparent_65%)]" />
-          <div className="relative">
-            <h2 className="font-display text-3xl md:text-5xl font-semibold">
-              Ready to plate up your <span className="italic peach-text">first 3D menu?</span>
+/* ---------------- INTERACTIVE DEMO ---------------- */
+function InteractiveDemo() {
+  return (
+    <section id="demo" className="relative mx-auto max-w-7xl px-4 md:px-6 py-20 md:py-28">
+      <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
+        <div>
+          <p className="text-xs uppercase tracking-[0.22em] sage-text mb-3">Interactive demo</p>
+          <h2 className="font-display text-3xl md:text-5xl font-semibold cream-text">
+            See what your <span className="italic peach-text">guests will experience.</span>
+          </h2>
+          <p className="mt-5 text-[color:var(--muted-foreground)] md:text-lg leading-relaxed">
+            A sample interactive dish, exactly as your guests would see it after tapping or scanning
+            a MenuVerse table card.
+          </p>
+          <ul className="mt-6 space-y-3 text-sm md:text-base">
+            {[
+              "Rotate and zoom to inspect the plate",
+              "View the dish on your table in AR",
+              "See ingredients, dietary info and price",
+              "Restaurant branding throughout",
+            ].map((l) => (
+              <li key={l} className="flex items-start gap-3">
+                <span className="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[color:var(--sage)]/20 border border-[color:var(--sage)]/40 sage-text">
+                  <Check className="h-3 w-3" />
+                </span>
+                <span className="text-[color:var(--cream)]/90">{l}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <DemoCard />
+      </div>
+    </section>
+  );
+}
+
+function DemoCard() {
+  return (
+    <div className="glass rounded-[28px] p-4 md:p-5 relative">
+      <div className="absolute -top-3 left-5 rounded-full bg-[color:var(--sage)]/20 border border-[color:var(--sage)]/40 px-3 py-1 text-[10px] uppercase tracking-[0.18em] sage-text">
+        Sample guest experience
+      </div>
+
+      {/* Dish stage */}
+      <div className="relative rounded-2xl overflow-hidden bg-[color:var(--surface)] aspect-[4/3]">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_color-mix(in_oklab,_var(--peach)_18%,_transparent),_transparent_65%)]" />
+        <img
+          src={heroDish}
+          alt="Sample signature dish rotating in 3D"
+          width={1280} height={960} loading="lazy"
+          className="absolute inset-0 w-full h-full object-cover anim-float"
+        />
+        {/* rotate control */}
+        <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-2 rounded-full glass px-3 py-1.5 text-xs text-[color:var(--cream)]">
+          <RefreshCw className="h-3.5 w-3.5 sage-text" /> Drag to rotate · pinch to zoom
+        </div>
+      </div>
+
+      {/* Meta */}
+      <div className="mt-5 flex items-start justify-between gap-4">
+        <div className="min-w-0">
+          <div className="text-[11px] uppercase tracking-widest sage-text">Aurum Restaurant</div>
+          <h3 className="font-display text-2xl cream-text truncate">Malai Butter Chicken</h3>
+          <p className="text-sm text-[color:var(--muted-foreground)] mt-1">
+            Tandoor-roasted chicken in a slow-cooked cashew, tomato and cream gravy, finished with kasuri methi.
+          </p>
+        </div>
+        <div className="shrink-0 text-right">
+          <div className="font-display text-2xl peach-text">₹ 620</div>
+          <div className="mt-1 flex flex-wrap justify-end gap-1.5 text-[10px]">
+            <span className="px-2 py-0.5 rounded-full border border-[color:var(--sage)]/40 sage-text">Chef's Pick</span>
+            <span className="px-2 py-0.5 rounded-full border border-[color:var(--sage)]/40 sage-text">Mild</span>
+          </div>
+        </div>
+      </div>
+
+      <a href="#contact" className="mt-5 block">
+        <Button className="w-full h-11 rounded-full bg-[color:var(--peach)] text-[color:var(--primary-foreground)] hover:bg-[color:var(--peach-hover)] font-semibold">
+          <Smartphone className="h-4 w-4 mr-2" /> View on your table
+        </Button>
+      </a>
+    </div>
+  );
+}
+
+/* ---------------- RESTAURANT BENEFITS ---------------- */
+function RestaurantBenefits() {
+  const items = [
+    "Help guests understand the dish before ordering",
+    "Give premium dishes greater visibility",
+    "Create a modern and memorable restaurant experience",
+    "Reduce uncertainty around portion size and presentation",
+    "Update menu details without reprinting the full menu",
+    "See which dishes attract the most guest interest",
+  ];
+  return (
+    <section className="relative mx-auto max-w-7xl px-4 md:px-6 py-20 md:py-28">
+      <div className="grid gap-12 lg:grid-cols-[1fr_1.1fr] lg:items-center">
+        <div className="relative rounded-3xl overflow-hidden border border-[color:var(--sage)]/25 shadow-2xl">
+          <img src={arTable} alt="Signature dish appearing on the table in AR" width={1280} height={1024} loading="lazy" className="w-full h-auto object-cover" />
+          <div className="absolute inset-x-0 bottom-0 p-5 bg-gradient-to-t from-[color:var(--background)] via-[color:var(--background)]/60 to-transparent">
+            <div className="inline-flex items-center gap-2 text-xs uppercase tracking-widest sage-text">
+              <HandMetal className="h-3.5 w-3.5" /> AR on the guest's own table
+            </div>
+          </div>
+        </div>
+        <div>
+          <p className="text-xs uppercase tracking-[0.22em] sage-text mb-3">Restaurant benefits</p>
+          <h2 className="font-display text-3xl md:text-5xl font-semibold cream-text">
+            Turn signature dishes into your <span className="italic peach-text">strongest sales experience.</span>
+          </h2>
+          <ul className="mt-8 grid sm:grid-cols-2 gap-3.5">
+            {items.map((b) => (
+              <li key={b} className="flex items-start gap-3 rounded-2xl border border-[color:var(--sage)]/20 bg-[color:var(--surface)]/60 p-4">
+                <span className="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[color:var(--sage)]/20 border border-[color:var(--sage)]/40 sage-text">
+                  <Check className="h-3.5 w-3.5" />
+                </span>
+                <span className="text-sm text-[color:var(--cream)]/90 leading-relaxed">{b}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ---------------- ANALYTICS ---------------- */
+function Analytics() {
+  return (
+    <section className="mx-auto max-w-7xl px-4 md:px-6 py-20 md:py-28">
+      <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
+        <div className="order-2 lg:order-1">
+          <div className="rounded-3xl overflow-hidden border border-[color:var(--sage)]/25 shadow-2xl">
+            <img src={ownerAnalytics} alt="Restaurant owner viewing MenuVerse analytics" width={1280} height={1024} loading="lazy" className="w-full h-auto object-cover" />
+          </div>
+          <div className="mt-4 grid grid-cols-3 gap-3 text-center">
+            {[
+              { k: "NFC taps + QR scans", v: "Live" },
+              { k: "Top dishes", v: "Ranked" },
+              { k: "Device split", v: "iOS / Android" },
+            ].map((m) => (
+              <div key={m.k} className="rounded-2xl border border-[color:var(--sage)]/25 bg-[color:var(--card)]/60 p-3">
+                <div className="text-[10px] uppercase tracking-widest text-[color:var(--muted-foreground)]">{m.k}</div>
+                <div className="mt-1 font-display text-base cream-text">{m.v}</div>
+              </div>
+            ))}
+          </div>
+          <p className="mt-3 text-[11px] text-[color:var(--muted-foreground)] italic">
+            Sample dashboard preview. MenuVerse provides and maintains this system for your restaurant.
+          </p>
+        </div>
+
+        <div className="order-1 lg:order-2">
+          <p className="text-xs uppercase tracking-[0.22em] sage-text mb-3">Analytics</p>
+          <h2 className="font-display text-3xl md:text-5xl font-semibold cream-text">
+            Understand what catches <span className="italic peach-text">your guests' attention.</span>
+          </h2>
+          <p className="mt-5 text-[color:var(--muted-foreground)] md:text-lg leading-relaxed">
+            See how guests engage with your menu — which dishes they open, when they open them, and
+            from which devices. We take care of the setup, hosting and reporting.
+          </p>
+          <ul className="mt-7 grid gap-2.5">
+            {[
+              "Total NFC taps and QR scans",
+              "Most viewed dishes",
+              "Popular viewing times",
+              "Device breakdown",
+              "Individual dish engagement",
+            ].map((f) => (
+              <li key={f} className="flex items-start gap-3 text-sm text-[color:var(--cream)]/90">
+                <span className="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[color:var(--sage)]/20 border border-[color:var(--sage)]/40 sage-text">
+                  <Check className="h-3 w-3" />
+                </span>
+                {f}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ---------------- PACKAGES ---------------- */
+function Packages() {
+  const plans = [
+    {
+      name: "Signature Experience",
+      tagline: "Perfect for a focused, standout menu",
+      features: [
+        "Up to 5 signature dishes",
+        "Branded interactive menu",
+        "NFC + QR table cards",
+        "Setup and launch",
+        "Hosting and support",
+      ],
+      cta: "Request Quote",
+    },
+    {
+      name: "Restaurant Showcase",
+      tagline: "Most restaurants start here",
+      popular: true,
+      features: [
+        "Up to 10 signature dishes",
+        "Custom restaurant branding",
+        "Additional NFC + QR cards",
+        "Analytics access",
+        "Priority updates",
+      ],
+      cta: "Request Quote",
+    },
+    {
+      name: "Custom Experience",
+      tagline: "For groups and multi-location brands",
+      features: [
+        "More dishes or multiple locations",
+        "Custom card quantity",
+        "Advanced branding",
+        "Custom integrations",
+        "Dedicated support",
+      ],
+      cta: "Contact Us",
+    },
+  ];
+  return (
+    <section id="packages" className="mx-auto max-w-7xl px-4 md:px-6 py-20 md:py-28">
+      <div className="mx-auto max-w-2xl text-center mb-12">
+        <p className="text-xs uppercase tracking-[0.22em] sage-text mb-3">Packages</p>
+        <h2 className="font-display text-3xl md:text-5xl font-semibold cream-text">
+          Choose a package. <span className="italic peach-text">We handle everything.</span>
+        </h2>
+      </div>
+      <div className="grid gap-5 md:gap-6 md:grid-cols-3 items-stretch">
+        {plans.map((p) => (
+          <div
+            key={p.name}
+            className={`relative flex flex-col rounded-3xl p-7 md:p-8 border transition-all ${
+              p.popular
+                ? "bg-[color:var(--card)] border-[color:var(--peach)]/50 gold-glow"
+                : "bg-[color:var(--surface)]/70 border-[color:var(--sage)]/25 hover:border-[color:var(--sage)]/45"
+            }`}
+          >
+            {p.popular && (
+              <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-[color:var(--peach)] px-3 py-1 text-[10px] font-semibold text-[color:var(--primary-foreground)] uppercase tracking-[0.18em]">
+                Most Popular
+              </div>
+            )}
+            <h3 className="font-display text-2xl cream-text">{p.name}</h3>
+            <p className="mt-1.5 text-sm text-[color:var(--muted-foreground)]">{p.tagline}</p>
+            <div className="mt-5 rounded-xl bg-[color:var(--background)]/60 border border-[color:var(--sage)]/20 px-4 py-3">
+              <div className="text-[11px] uppercase tracking-widest sage-text">Custom pricing</div>
+              <div className="mt-1 font-display text-lg peach-text">Tailored to your restaurant</div>
+            </div>
+            <ul className="mt-6 space-y-3 text-sm flex-1">
+              {p.features.map((f) => (
+                <li key={f} className="flex items-start gap-2.5">
+                  <Check className="h-4 w-4 mt-0.5 sage-text shrink-0" />
+                  <span className="text-[color:var(--cream)]/90">{f}</span>
+                </li>
+              ))}
+            </ul>
+            <a href="#contact" className="mt-8">
+              <Button
+                className={`w-full rounded-full h-11 font-semibold ${
+                  p.popular
+                    ? "bg-[color:var(--peach)] text-[color:var(--primary-foreground)] hover:bg-[color:var(--peach-hover)]"
+                    : "bg-transparent text-[color:var(--cream)] border border-[color:var(--sage)]/50 hover:bg-[color:var(--sage)]/10"
+                }`}
+              >
+                {p.cta}
+              </Button>
+            </a>
+          </div>
+        ))}
+      </div>
+      <p className="mt-8 text-center text-sm text-[color:var(--muted-foreground)]">
+        Pricing depends on the number of dishes, locations, table cards and required customisation.
+      </p>
+    </section>
+  );
+}
+
+/* ---------------- TRUST ---------------- */
+function TrustSection() {
+  const kinds = [
+    { icon: Store,     label: "Premium cafés" },
+    { icon: Utensils,  label: "Restaurants" },
+    { icon: Hotel,     label: "Hotels and resorts" },
+    { icon: Cake,      label: "Bakeries & dessert studios" },
+    { icon: Truck,     label: "Cloud kitchens" },
+    { icon: Building2, label: "Restaurant groups" },
+  ];
+  return (
+    <section className="mx-auto max-w-7xl px-4 md:px-6 py-20 md:py-24">
+      <div className="mx-auto max-w-2xl text-center mb-10">
+        <p className="text-xs uppercase tracking-[0.22em] sage-text mb-3">Built for</p>
+        <h2 className="font-display text-3xl md:text-5xl font-semibold cream-text">
+          Designed for modern <span className="italic peach-text">hospitality businesses.</span>
+        </h2>
+      </div>
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4">
+        {kinds.map((k) => (
+          <div key={k.label} className="flex flex-col items-center text-center gap-2.5 rounded-2xl border border-[color:var(--sage)]/25 bg-[color:var(--surface)]/60 p-5 hover:sage-glow transition-all">
+            <div className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-[color:var(--sage)]/15 sage-text border border-[color:var(--sage)]/25">
+              <k.icon className="h-5 w-5" />
+            </div>
+            <div className="text-sm cream-text">{k.label}</div>
+          </div>
+        ))}
+      </div>
+      <p className="mt-6 text-center text-xs text-[color:var(--muted-foreground)] italic">
+        Sample categories. Client work will be published here as it launches.
+      </p>
+    </section>
+  );
+}
+
+/* ---------------- FINAL CTA ---------------- */
+function FinalCta() {
+  return (
+    <section className="relative mx-auto max-w-6xl px-4 md:px-6 py-20 md:py-28">
+      <div className="relative overflow-hidden rounded-[2rem] border border-[color:var(--sage)]/25 bg-[color:var(--card)] p-8 md:p-14">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_color-mix(in_oklab,_var(--peach)_20%,_transparent),_transparent_65%)]" />
+        <div className="relative grid gap-10 lg:grid-cols-[1.1fr_1fr] items-center">
+          <div>
+            <h2 className="font-display text-3xl md:text-5xl font-semibold cream-text leading-[1.05]">
+              Your guests should not have to <span className="italic peach-text">imagine the dish.</span>
             </h2>
-            <p className="mx-auto mt-4 max-w-xl text-muted-foreground md:text-lg">
-              Set up your restaurant, upload your first dish and print the QR — all before lunch service.
+            <p className="mt-3 font-display text-2xl md:text-3xl cream-text">Let them experience it.</p>
+            <p className="mt-5 text-[color:var(--muted-foreground)] md:text-lg leading-relaxed max-w-xl">
+              Send us your menu and dish photos. We'll create and launch the complete MenuVerse experience for your restaurant.
             </p>
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-              <Link to="/auth">
-                <Button size="lg" className="bg-primary text-primary-foreground hover:opacity-90 gold-glow rounded-full px-8 h-12 text-base">
-                  Create my restaurant <ArrowRight className="ml-1 h-4 w-4" />
+            <div className="mt-8 flex flex-wrap gap-3">
+              <a href="#contact">
+                <Button size="lg" className="bg-[color:var(--peach)] text-[color:var(--primary-foreground)] hover:bg-[color:var(--peach-hover)] gold-glow rounded-full px-7 h-12 text-base font-semibold">
+                  Get a Quote <ArrowRight className="ml-1 h-4 w-4" />
                 </Button>
-              </Link>
+              </a>
               <a href="#demo">
-                <Button size="lg" variant="outline" className="rounded-full px-8 h-12 text-base border-[color:var(--sage)]/50 hover:bg-[color:var(--sage)]/10">
-                  Try the live demo
+                <Button size="lg" variant="outline" className="rounded-full px-7 h-12 text-base border-[color:var(--sage)]/50 text-[color:var(--cream)] hover:bg-[color:var(--sage)]/10 bg-transparent">
+                  View Demo
                 </Button>
               </a>
             </div>
           </div>
+          <div className="relative aspect-[5/4]">
+            <div className="absolute left-0 top-0 w-[70%] rounded-2xl overflow-hidden border border-[color:var(--sage)]/25">
+              <img src={heroDish} alt="Premium signature dish" width={720} height={720} loading="lazy" className="w-full h-full object-cover" />
+            </div>
+            <div className="absolute right-0 top-[15%] w-[46%] rounded-[24px] overflow-hidden border border-[color:var(--sage)]/25 sage-glow">
+              <img src={phoneDish} alt="Phone showing dish" width={480} height={600} loading="lazy" className="w-full h-full object-cover" />
+            </div>
+            <div className="absolute left-[8%] bottom-0 w-[52%] rounded-2xl overflow-hidden border border-[color:var(--sage)]/25">
+              <img src={nfcCard} alt="Branded NFC and QR card" width={640} height={480} loading="lazy" className="w-full h-full object-cover" />
+            </div>
+          </div>
         </div>
-      </section>
+      </div>
+    </section>
+  );
+}
 
-      <footer className="border-t border-[color:var(--sage)]/20 mt-4">
-        <div className="mx-auto max-w-7xl px-4 md:px-6 py-8 md:py-10 flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="font-display text-xl font-semibold peach-text">MenuVerse</div>
-          <nav className="flex flex-wrap justify-center gap-5 text-sm text-muted-foreground">
-            <a href="#benefits" className="hover:text-foreground">Benefits</a>
-            <a href="#demo" className="hover:text-foreground">Demo</a>
-            <a href="#pricing" className="hover:text-foreground">Pricing</a>
-            <Link to="/auth" className="hover:text-foreground">Sign in</Link>
-          </nav>
-          <p className="text-xs md:text-sm text-muted-foreground">
-            © {new Date().getFullYear()} MenuVerse · Crafted for hospitality.
+/* ---------------- CONTACT FORM ---------------- */
+function ContactForm() {
+  const [sent, setSent] = useState(false);
+  return (
+    <section id="contact" className="mx-auto max-w-5xl px-4 md:px-6 py-20 md:py-28">
+      <div className="text-center mb-10">
+        <p className="text-xs uppercase tracking-[0.22em] sage-text mb-3">Request a quote</p>
+        <h2 className="font-display text-3xl md:text-5xl font-semibold cream-text">
+          Tell us about your <span className="italic peach-text">restaurant.</span>
+        </h2>
+        <p className="mt-4 text-[color:var(--muted-foreground)] md:text-lg">
+          Share your details and menu — we'll come back with a tailored proposal.
+        </p>
+      </div>
+
+      {sent ? (
+        <div className="glass rounded-3xl p-10 text-center">
+          <div className="mx-auto inline-flex h-12 w-12 items-center justify-center rounded-full bg-[color:var(--sage)]/15 sage-text border border-[color:var(--sage)]/40">
+            <Check className="h-5 w-5" />
+          </div>
+          <h3 className="mt-4 font-display text-2xl cream-text">Thank you — request received.</h3>
+          <p className="mt-2 text-[color:var(--muted-foreground)]">
+            The MenuVerse team will reach out shortly to discuss your restaurant.
           </p>
         </div>
-      </footer>
-    </div>
-  );
-}
-
-/* ---------- Hero product demo: dish + QR + AR-on-table ---------- */
-function HeroDemo() {
-  return (
-    <div className="relative mx-auto w-full max-w-[540px] aspect-square">
-      {/* soft floor glow */}
-      <div className="absolute inset-x-8 bottom-8 h-40 rounded-full bg-[radial-gradient(ellipse_at_center,_color-mix(in_oklab,_var(--peach)_28%,_transparent),_transparent_70%)] blur-2xl" />
-
-      {/* Central 3D dish */}
-      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-[54%] anim-float">
-        <PlateSVG size={320} />
-      </div>
-
-      {/* QR card — top-left */}
-      <div className="absolute left-0 top-6 md:top-10 rotate-[-6deg] glass rounded-2xl p-3 md:p-4 w-[130px] md:w-[160px] shadow-xl">
-        <div className="relative rounded-lg overflow-hidden bg-[color:var(--cream)] p-2">
-          <QRSVG className="w-full h-auto" />
-          <div className="pointer-events-none absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-[color:var(--peach)]/60 via-[color:var(--peach)]/10 to-transparent anim-scan mix-blend-screen" />
-        </div>
-        <div className="mt-2 flex items-center gap-1.5 text-[10px] uppercase tracking-widest sage-text">
-          <ScanLine className="h-3 w-3" /> Scan me
-        </div>
-      </div>
-
-      {/* AR phone — bottom-right */}
-      <div className="absolute right-0 bottom-2 md:bottom-6 rotate-[5deg] w-[150px] md:w-[190px]">
-        <div className="rounded-[26px] border border-[color:var(--sage)]/40 bg-card/90 p-2 shadow-2xl sage-glow">
-          <div className="relative overflow-hidden rounded-[20px] aspect-[9/16] bg-gradient-to-b from-[oklch(0.22_0.02_60)] to-[oklch(0.14_0.01_60)]">
-            {/* table surface */}
-            <div className="absolute inset-x-0 bottom-0 h-2/5 bg-[linear-gradient(180deg,transparent,color-mix(in_oklab,var(--sage)_18%,transparent))]" />
-            {/* AR reticle */}
-            <div className="absolute left-1/2 top-[62%] -translate-x-1/2 -translate-y-1/2">
-              <div className="absolute inset-0 rounded-full border border-[color:var(--peach)]/60 w-24 h-24 -translate-x-1/2 -translate-y-1/2 anim-pulse-ring" />
-              <div className="w-24 h-24 rounded-full border border-dashed border-[color:var(--peach)]/50 -translate-x-1/2 -translate-y-1/2" />
-            </div>
-            {/* placed dish */}
-            <div className="absolute left-1/2 top-[55%] -translate-x-1/2 -translate-y-1/2 anim-ar-rise">
-              <PlateSVG size={110} />
-            </div>
-            {/* top bar */}
-            <div className="absolute inset-x-0 top-0 flex items-center justify-between px-3 py-2 text-[9px] uppercase tracking-widest text-[color:var(--cream)]/80">
-              <span className="inline-flex items-center gap-1"><Eye className="h-2.5 w-2.5" /> AR view</span>
-              <span className="sage-text">Live</span>
-            </div>
+      ) : (
+        <form
+          onSubmit={(e) => { e.preventDefault(); setSent(true); }}
+          className="glass rounded-3xl p-6 md:p-8 grid gap-4 md:grid-cols-2"
+        >
+          <Field label="Restaurant name" name="restaurant" required />
+          <Field label="Contact person" name="contact" required />
+          <Field label="Phone number" name="phone" type="tel" required />
+          <Field label="Email address" name="email" type="email" required />
+          <Field label="City" name="city" required />
+          <SelectField label="Restaurant type" name="type" options={["Restaurant", "Café", "Hotel / Resort", "Bakery / Dessert studio", "Cloud kitchen", "Restaurant group"]} />
+          <Field label="Number of dishes to feature" name="dishes" type="number" placeholder="e.g. 8" />
+          <Field label="Approximate number of tables" name="tables" type="number" placeholder="e.g. 20" />
+          <FileField label="Menu upload (PDF, image)" name="menu" accept=".pdf,image/*" />
+          <FileField label="Dish photos (multiple)" name="dishPhotos" accept="image/*" multiple />
+          <SelectField label="Preferred package" name="pkg" options={["Signature Experience", "Restaurant Showcase", "Custom Experience", "Not sure — please advise"]} />
+          <div className="md:col-span-2">
+            <label className="block text-sm text-[color:var(--cream)]/90 mb-1.5">Message</label>
+            <textarea
+              name="message"
+              rows={4}
+              className="w-full rounded-xl bg-[color:var(--background)]/70 border border-[color:var(--sage)]/25 focus:border-[color:var(--peach)]/60 outline-none px-3.5 py-2.5 text-sm cream-text placeholder:text-[color:var(--muted-foreground)]"
+              placeholder="Anything you'd like us to know about your restaurant, brand or menu."
+            />
           </div>
-        </div>
-      </div>
+          <div className="md:col-span-2 flex flex-col sm:flex-row sm:items-center gap-4 sm:justify-between">
+            <p className="text-xs text-[color:var(--muted-foreground)] flex items-start gap-2">
+              <ShieldCheck className="h-3.5 w-3.5 mt-0.5 sage-text shrink-0" />
+              Your files are used only to assess and prepare your restaurant project.
+            </p>
+            <Button type="submit" size="lg" className="bg-[color:var(--peach)] text-[color:var(--primary-foreground)] hover:bg-[color:var(--peach-hover)] gold-glow rounded-full px-7 h-12 font-semibold">
+              Request My MenuVerse Quote
+            </Button>
+          </div>
+        </form>
+      )}
+    </section>
+  );
+}
 
-      {/* floating chip */}
-      <div className="absolute right-2 top-4 glass rounded-full px-3 py-1.5 text-[10px] uppercase tracking-widest sage-text hidden md:inline-flex items-center gap-1.5">
-        <Sparkles className="h-3 w-3" /> No app required
+function Field(props: React.InputHTMLAttributes<HTMLInputElement> & { label: string }) {
+  const { label, ...rest } = props;
+  return (
+    <div>
+      <label className="block text-sm text-[color:var(--cream)]/90 mb-1.5">{label}</label>
+      <input
+        {...rest}
+        className="w-full rounded-xl bg-[color:var(--background)]/70 border border-[color:var(--sage)]/25 focus:border-[color:var(--peach)]/60 outline-none px-3.5 py-2.5 text-sm cream-text placeholder:text-[color:var(--muted-foreground)]"
+      />
+    </div>
+  );
+}
+
+function SelectField({ label, name, options }: { label: string; name: string; options: string[] }) {
+  return (
+    <div>
+      <label className="block text-sm text-[color:var(--cream)]/90 mb-1.5">{label}</label>
+      <select
+        name={name}
+        defaultValue=""
+        className="w-full rounded-xl bg-[color:var(--background)]/70 border border-[color:var(--sage)]/25 focus:border-[color:var(--peach)]/60 outline-none px-3.5 py-2.5 text-sm cream-text"
+      >
+        <option value="" disabled>Select…</option>
+        {options.map((o) => <option key={o} value={o}>{o}</option>)}
+      </select>
+    </div>
+  );
+}
+
+function FileField({ label, name, accept, multiple }: { label: string; name: string; accept?: string; multiple?: boolean }) {
+  return (
+    <div>
+      <label className="block text-sm text-[color:var(--cream)]/90 mb-1.5">{label}</label>
+      <div className="rounded-xl border border-dashed border-[color:var(--sage)]/40 bg-[color:var(--background)]/50 px-3.5 py-3 flex items-center gap-3">
+        <ClipboardList className="h-4 w-4 sage-text shrink-0" />
+        <input
+          type="file"
+          name={name}
+          accept={accept}
+          multiple={multiple}
+          className="text-xs text-[color:var(--muted-foreground)] file:mr-3 file:rounded-full file:border-0 file:bg-[color:var(--sage)]/20 file:px-3 file:py-1.5 file:text-xs file:font-medium file:cream-text hover:file:bg-[color:var(--sage)]/30 cursor-pointer w-full"
+        />
       </div>
     </div>
   );
 }
 
-/* Turntable demo card in the 3D-menu section */
-function DemoTurntable() {
+/* ---------------- FOOTER ---------------- */
+function Footer() {
   return (
-    <div className="relative mx-auto w-full max-w-[520px]">
-      <div className="glass rounded-[2rem] p-6 md:p-8 sage-glow">
-        <div className="flex items-center justify-between mb-4 text-xs text-muted-foreground">
-          <span className="inline-flex items-center gap-1.5 sage-text uppercase tracking-widest">
-            <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--peach)]" /> Live 3D
+    <footer className="border-t border-[color:var(--sage)]/20 mt-4">
+      <div className="mx-auto max-w-7xl px-4 md:px-6 py-10 grid gap-6 md:grid-cols-3 items-center">
+        <div className="flex items-center gap-2">
+          <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-[color:var(--peach)]/15 border border-[color:var(--peach)]/30">
+            <Utensils className="h-4 w-4 peach-text" />
           </span>
-          <span>Drag · pinch · tap AR</span>
+          <span className="font-display text-xl font-semibold cream-text">MenuVerse</span>
         </div>
-        <div className="relative aspect-square rounded-2xl overflow-hidden bg-[radial-gradient(ellipse_at_center,_oklch(0.18_0.01_60),_oklch(0.09_0.005_60))]">
-          <div className="absolute inset-0 gold-grid-bg opacity-30" />
-          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 anim-dish-spin">
-            <PlateSVG size={280} />
-          </div>
-          {/* controls */}
-          <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2">
-            {["3D", "AR", "Order"].map((t, i) => (
-              <span key={t}
-                className={`px-3 py-1.5 rounded-full text-[11px] uppercase tracking-widest border ${
-                  i === 0
-                    ? "bg-primary text-primary-foreground border-transparent"
-                    : "border-[color:var(--sage)]/40 text-foreground/90 bg-card/60"
-                }`}
-              >{t}</span>
-            ))}
-          </div>
-        </div>
-        <div className="mt-5 flex items-center justify-between">
-          <div>
-            <div className="font-display text-lg cream-text">Butter Chicken</div>
-            <div className="text-xs text-muted-foreground">Signature · Serves 2</div>
-          </div>
-          <div className="font-display text-lg peach-text">₹ 480</div>
-        </div>
+        <nav className="flex flex-wrap justify-center gap-5 text-sm text-[color:var(--muted-foreground)]">
+          <a href="#experience" className="hover:text-[color:var(--cream)]">Experience</a>
+          <a href="#how" className="hover:text-[color:var(--cream)]">How It Works</a>
+          <a href="#nfc" className="hover:text-[color:var(--cream)]">NFC + QR</a>
+          <a href="#packages" className="hover:text-[color:var(--cream)]">Packages</a>
+          <a href="#contact" className="hover:text-[color:var(--cream)]">Contact</a>
+        </nav>
+        <p className="text-xs md:text-sm text-[color:var(--muted-foreground)] md:text-right">
+          © {new Date().getFullYear()} MenuVerse · Crafted for hospitality.
+        </p>
       </div>
+    </footer>
+  );
+}
+
+/* ---------------- Sticky mobile CTA ---------------- */
+function StickyQuote() {
+  return (
+    <div className="lg:hidden fixed bottom-3 inset-x-3 z-40">
+      <a href="#contact" className="block">
+        <Button className="w-full h-12 rounded-full bg-[color:var(--peach)] text-[color:var(--primary-foreground)] hover:bg-[color:var(--peach-hover)] gold-glow font-semibold shadow-2xl">
+          Get a Quote
+        </Button>
+      </a>
     </div>
   );
 }
 
-/* Analytics preview panel */
-function AnalyticsPreview() {
-  const bars = [42, 58, 34, 71, 46, 88, 62];
-  const days = ["M", "T", "W", "T", "F", "S", "S"];
-  const top = [
-    { name: "Butter Chicken", scans: 428, pct: 92 },
-    { name: "Paneer Tikka",   scans: 312, pct: 68 },
-    { name: "Hyderabadi Biryani", scans: 274, pct: 60 },
-  ];
-  return (
-    <div className="glass rounded-[2rem] p-5 md:p-7 sage-glow">
-      <div className="flex items-center justify-between text-xs text-muted-foreground">
-        <span className="inline-flex items-center gap-2 sage-text uppercase tracking-widest">
-          <BarChart3 className="h-3.5 w-3.5" /> This week
-        </span>
-        <span>Live · updated 2s ago</span>
-      </div>
-
-      {/* chart */}
-      <div className="mt-5 rounded-2xl bg-card/40 border border-[color:var(--sage)]/20 p-4">
-        <div className="flex items-end gap-2 md:gap-3 h-36">
-          {bars.map((h, i) => (
-            <div key={i} className="flex-1 flex flex-col items-center gap-2 justify-end">
-              <div
-                className="w-full rounded-t-md gold-gradient"
-                style={{ height: `${h}%`, opacity: i === 5 ? 1 : 0.75 }}
-              />
-              <span className="text-[10px] text-muted-foreground">{days[i]}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* top dishes */}
-      <div className="mt-5 space-y-3">
-        {top.map((d) => (
-          <div key={d.name}>
-            <div className="flex items-center justify-between text-sm">
-              <span className="cream-text">{d.name}</span>
-              <span className="text-muted-foreground">{d.scans} scans</span>
-            </div>
-            <div className="mt-1.5 h-1.5 w-full rounded-full bg-[color:var(--sage)]/15 overflow-hidden">
-              <div className="h-full rounded-full gold-gradient" style={{ width: `${d.pct}%` }} />
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-/* ---------- Decorative SVGs ---------- */
-function PlateSVG({ size = 260 }: { size?: number }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 260 260" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
-      <defs>
-        <radialGradient id="plate" cx="50%" cy="45%" r="55%">
-          <stop offset="0%" stopColor="#F4EEE4" />
-          <stop offset="70%" stopColor="#E8DFCE" />
-          <stop offset="100%" stopColor="#B8AE9A" />
-        </radialGradient>
-        <radialGradient id="curry" cx="50%" cy="45%" r="55%">
-          <stop offset="0%" stopColor="#F2B38F" />
-          <stop offset="60%" stopColor="#C77A54" />
-          <stop offset="100%" stopColor="#7A3A22" />
-        </radialGradient>
-        <radialGradient id="shine" cx="35%" cy="30%" r="30%">
-          <stop offset="0%" stopColor="#ffffff" stopOpacity="0.6" />
-          <stop offset="100%" stopColor="#ffffff" stopOpacity="0" />
-        </radialGradient>
-      </defs>
-      {/* shadow */}
-      <ellipse cx="130" cy="215" rx="105" ry="14" fill="#000" opacity="0.45" />
-      {/* plate rim */}
-      <ellipse cx="130" cy="140" rx="120" ry="42" fill="url(#plate)" />
-      <ellipse cx="130" cy="136" rx="120" ry="42" fill="#0a0a0a" opacity="0.15" />
-      {/* plate top */}
-      <ellipse cx="130" cy="128" rx="120" ry="42" fill="url(#plate)" />
-      {/* curry */}
-      <ellipse cx="130" cy="124" rx="86" ry="28" fill="url(#curry)" />
-      {/* garnish dots */}
-      <circle cx="105" cy="118" r="4" fill="#91A58F" />
-      <circle cx="150" cy="130" r="3.5" fill="#91A58F" />
-      <circle cx="135" cy="112" r="3" fill="#F4EEE4" />
-      <circle cx="120" cy="132" r="2.5" fill="#F4EEE4" />
-      <circle cx="160" cy="118" r="2.5" fill="#F4EEE4" />
-      {/* highlight */}
-      <ellipse cx="105" cy="112" rx="30" ry="10" fill="url(#shine)" />
-    </svg>
-  );
-}
-
-function QRSVG({ className = "" }: { className?: string }) {
-  // deterministic pseudo-random pattern
-  const size = 21;
-  const cells: boolean[] = [];
-  let s = 7;
-  for (let i = 0; i < size * size; i++) {
-    s = (s * 9301 + 49297) % 233280;
-    cells.push(s / 233280 > 0.55);
-  }
-  const finder = (x: number, y: number) => (
-    <g key={`f-${x}-${y}`}>
-      <rect x={x} y={y} width={7} height={7} fill="#0a0a0a" />
-      <rect x={x + 1} y={y + 1} width={5} height={5} fill="#F4EEE4" />
-      <rect x={x + 2} y={y + 2} width={3} height={3} fill="#0a0a0a" />
-    </g>
-  );
-  return (
-    <svg viewBox={`0 0 ${size} ${size}`} className={className} shapeRendering="crispEdges" aria-hidden>
-      <rect width={size} height={size} fill="#F4EEE4" />
-      {cells.map((on, i) => {
-        const x = i % size, y = Math.floor(i / size);
-        // skip finder zones
-        if ((x < 8 && y < 8) || (x > size - 9 && y < 8) || (x < 8 && y > size - 9)) return null;
-        return on ? <rect key={i} x={x} y={y} width={1} height={1} fill="#0a0a0a" /> : null;
-      })}
-      {finder(0, 0)}
-      {finder(size - 7, 0)}
-      {finder(0, size - 7)}
-    </svg>
-  );
-}
+/* silence unused imports if any icons drop later */
+export const _icons = { Layers };
