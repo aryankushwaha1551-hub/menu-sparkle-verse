@@ -120,14 +120,18 @@ export function DishForm({ existing }: { existing?: any }) {
       </div>
 
       <div className="glass rounded-2xl p-6 space-y-4">
-        <h2 className="font-display text-xl font-semibold gold-text">Media (Cloudinary URLs)</h2>
-        {inp("thumbnail_url", "Thumbnail Image URL")}
-        {inp("glb_url", "GLB Model URL (Android AR)")}
-        {inp("usdz_url", "USDZ Model URL (iPhone AR)")}
+        <div className="flex items-center justify-between">
+          <h2 className="font-display text-xl font-semibold gold-text">Media assets</h2>
+          <span className="text-[10px] uppercase tracking-wider px-2 py-1 rounded-full border border-primary/30 text-primary/80">Internal — MenuVerse team</span>
+        </div>
+        <p className="text-xs text-muted-foreground">Restaurant clients should send dish photos to the MenuVerse team — these fields are prepared and populated internally.</p>
+        {inp("thumbnail_url", "Dish photo URL")}
+        {inp("glb_url", "Interactive asset URL (Android)")}
+        {inp("usdz_url", "Interactive asset URL (iOS)")}
       </div>
 
       <Button type="submit" disabled={saving} className="bg-primary text-primary-foreground gold-glow rounded-xl h-12 px-8">
-        {saving ? "Saving…" : existing ? "Update Dish" : "Save Dish & Generate QR"}
+        {saving ? "Saving…" : existing ? "Update dish" : "Save dish & issue table card"}
       </Button>
     </form>
   );
