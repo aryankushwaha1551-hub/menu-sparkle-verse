@@ -78,7 +78,7 @@ function Dashboard() {
       </div>
 
       <div className="flex flex-wrap gap-3">
-        <a href="mailto:hello@menuverse.app?subject=Menu%20update%20request"><Button className="bg-primary text-primary-foreground gold-glow rounded-xl"><Plus className="h-4 w-4 mr-1" />Request a menu update</Button></Link>
+        <a href="mailto:hello@menuverse.app?subject=Menu%20update%20request"><Button className="bg-primary text-primary-foreground gold-glow rounded-xl"><Plus className="h-4 w-4 mr-1" />Request a menu update</Button></a>
         <Link to="/qr-codes"><Button variant="outline" className="rounded-xl border-primary/40 hover:bg-primary/10">View your table cards</Button></Link>
       </div>
 
