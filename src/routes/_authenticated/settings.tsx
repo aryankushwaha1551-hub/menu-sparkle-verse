@@ -51,8 +51,8 @@ function Settings() {
       </div>
       <form onSubmit={save} className="glass rounded-2xl p-6 space-y-4">
         {field("name", "Restaurant Name")}
-        {field("logo_url", "Logo URL (Cloudinary)")}
-        {field("phone", "Phone (WhatsApp — with country code 91)", { placeholder: "919999999999" })}
+        {field("logo_url", "Logo image URL")}
+        {field("phone", "Contact number (with country code, e.g. 91…)", { placeholder: "919999999999" })}
         {field("email", "Email", { type: "email" })}
         <div>
           <Label className="text-xs uppercase tracking-wider text-muted-foreground">Address</Label>

@@ -81,8 +81,15 @@ function Viewer() {
               style={{ width: "100%", height: "380px", background: "transparent", borderRadius: "16px" }}
             />
           ) : (
-            <div className="h-[380px] rounded-2xl bg-muted flex items-center justify-center text-muted-foreground">
-              {dish.thumbnail_url ? <img src={dish.thumbnail_url} alt={dish.name} className="max-h-full rounded-2xl" /> : "No 3D model uploaded"}
+            <div className="h-[380px] rounded-2xl bg-muted flex items-center justify-center text-muted-foreground text-center px-6">
+              {dish.thumbnail_url ? (
+                <img src={dish.thumbnail_url} alt={dish.name} className="max-h-full rounded-2xl" />
+              ) : (
+                <div>
+                  <div className="font-medium text-foreground">This interactive dish experience is being prepared.</div>
+                  <div className="text-sm mt-1">Explore other signature dishes from {restaurant?.name ?? "this restaurant"}.</div>
+                </div>
+              )}
             </div>
           )}
         </div>

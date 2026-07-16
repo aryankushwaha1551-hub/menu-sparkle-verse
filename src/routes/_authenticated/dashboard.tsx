@@ -38,10 +38,10 @@ function Dashboard() {
   const needsProfile = restaurant && (!restaurant.phone || !restaurant.name || restaurant.name === "My Restaurant");
 
   const statCards = [
-    { label: "Total Dishes", value: stats.dishes, icon: Boxes },
-    { label: "Total QR Codes", value: stats.qr, icon: QrCode },
-    { label: "Total Scans", value: stats.scans, icon: ScanLine },
-    { label: "Featured Dishes", value: stats.featured, icon: Star },
+    { label: "Dishes in your menu", value: stats.dishes, icon: Boxes },
+    { label: "Table cards issued", value: stats.qr, icon: QrCode },
+    { label: "Guest scans & taps", value: stats.scans, icon: ScanLine },
+    { label: "Signature dishes", value: stats.featured, icon: Star },
   ];
 
   return (
@@ -50,7 +50,7 @@ function Dashboard() {
         <div className="glass rounded-2xl p-4 flex items-center justify-between border-primary/40">
           <div>
             <div className="font-semibold">Complete your restaurant profile</div>
-            <div className="text-sm text-muted-foreground">Add your name, logo and phone so the WhatsApp order button works.</div>
+            <div className="text-sm text-muted-foreground">Add your restaurant name, logo and contact number so guests can reach you from your menu experience.</div>
           </div>
           <Link to="/settings"><Button className="bg-primary text-primary-foreground">Complete profile</Button></Link>
         </div>
@@ -60,7 +60,7 @@ function Dashboard() {
         <h1 className="font-display text-3xl md:text-4xl font-bold">
           Welcome, <span className="gold-text">{restaurant?.name ?? "Restaurant"}</span>
         </h1>
-        <p className="text-muted-foreground mt-1">Here's what's happening with your 3D menu today.</p>
+        <p className="text-muted-foreground mt-1">Your MenuVerse project at a glance. To add or update a dish, contact the MenuVerse team.</p>
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -78,16 +78,16 @@ function Dashboard() {
       </div>
 
       <div className="flex flex-wrap gap-3">
-        <Link to="/menu/new"><Button className="bg-primary text-primary-foreground gold-glow rounded-xl"><Plus className="h-4 w-4 mr-1" />Add New Dish</Button></Link>
-        <Link to="/qr-codes"><Button variant="outline" className="rounded-xl border-primary/40 hover:bg-primary/10">View All QR Codes</Button></Link>
+        <a href="mailto:hello@menuverse.app?subject=Menu%20update%20request"><Button className="bg-primary text-primary-foreground gold-glow rounded-xl"><Plus className="h-4 w-4 mr-1" />Request a menu update</Button></a>
+        <Link to="/qr-codes"><Button variant="outline" className="rounded-xl border-primary/40 hover:bg-primary/10">View your table cards</Button></Link>
       </div>
 
       <div>
-        <h2 className="font-display text-2xl font-semibold mb-4">Recent uploads</h2>
+        <h2 className="font-display text-2xl font-semibold mb-4">Your menu preview</h2>
         {recent.length === 0 ? (
           <div className="glass rounded-2xl p-10 text-center">
-            <div className="text-muted-foreground">No dishes yet — add your first one to get started.</div>
-            <Link to="/menu/new"><Button className="mt-4 bg-primary text-primary-foreground">Add Your First Dish</Button></Link>
+            <div className="text-muted-foreground">Your interactive menu is being prepared by the MenuVerse team. You'll see your dishes here once they're ready for review.</div>
+            <a href="mailto:hello@menuverse.app"><Button className="mt-4 bg-primary text-primary-foreground">Contact MenuVerse</Button></a>
           </div>
         ) : (
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

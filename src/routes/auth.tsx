@@ -62,7 +62,7 @@ function AuthPage() {
             {mode === "login" ? "Welcome back" : "Create your account"}
           </h1>
           <p className="text-sm text-muted-foreground text-center mt-1">
-            {mode === "login" ? "Sign in to manage your menu" : "Start your 3D menu in minutes"}
+            {mode === "login" ? "Sign in to your MenuVerse account" : "Create an account to track your MenuVerse project"}
           </p>
 
           <form onSubmit={onSubmit} className="mt-6 space-y-4">
