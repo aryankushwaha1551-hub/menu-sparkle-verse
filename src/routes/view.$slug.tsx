@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
@@ -16,6 +16,25 @@ function Viewer() {
   const [dish, setDish] = useState<any>(null);
   const [restaurant, setRestaurant] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+  const modelRef = useRef<any>(null);
+  const [arSupported, setArSupported] = useState(false);
+
+  useEffect(() => {
+    const el = modelRef.current;
+    if (!el) return;
+    const check = () => setArSupported(Boolean(el.canActivateAR));
+    el.addEventListener("load", check);
+    check();
+    return () => el.removeEventListener("load", check);
+  }, [dish]);
+
+  const launchAR = () => {
+    const el = modelRef.current;
+    if (el && typeof el.activateAR === "function") {
+      try { el.activateAR(); return; } catch {}
+    }
+    if (dish?.glb_url) window.location.href = dish.glb_url;
+  };
 
   useEffect(() => { (async () => {
     const { data } = await (supabase as any).from("menu_items").select("*, restaurants(*)").eq("slug", slug).maybeSingle();
@@ -71,6 +90,7 @@ function Viewer() {
         <div className="mt-6 glass rounded-2xl p-2">
           {dish.glb_url ? (
             <model-viewer
+              ref={modelRef}
               src={dish.glb_url}
               ios-src={dish.usdz_url ?? undefined}
               ar
@@ -96,12 +116,17 @@ function Viewer() {
 
         {dish.glb_url && (
           <>
-            <a href={dish.glb_url} rel="ar" className="block mt-4">
-              <Button className="w-full h-12 bg-primary text-primary-foreground gold-glow rounded-xl text-base font-semibold">
-                <Sparkles className="h-4 w-4 mr-2" /> View in Your Space 🪄
-              </Button>
-            </a>
-            <p className="text-center text-xs text-muted-foreground mt-2">Tap AR to place this dish on your table</p>
+            <Button
+              onClick={launchAR}
+              className="w-full h-12 bg-primary text-primary-foreground gold-glow rounded-xl text-base font-semibold mt-4"
+            >
+              <Sparkles className="h-4 w-4 mr-2" /> View in Your Space 🪄
+            </Button>
+            <p className="text-center text-xs text-muted-foreground mt-2">
+              {arSupported
+                ? "Tap AR to place this dish on your table"
+                : "Best viewed on a mobile device with AR support"}
+            </p>
           </>
         )}
 
