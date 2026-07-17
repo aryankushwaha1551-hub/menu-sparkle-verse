@@ -87,8 +87,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "MenuVerse — Interactive 3D & AR Menus for Restaurants" },
       { name: "twitter:description", content: "Done-for-you interactive menus with branded NFC + QR table cards. Send your dish photos — MenuVerse handles the rest." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/8385cbab-89a9-41c3-b457-822cea4b7278/id-preview-816aa462--a16d1b2c-b683-4bba-82a3-b4304bacdb55.lovable.app-1784024804870.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/8385cbab-89a9-41c3-b457-822cea4b7278/id-preview-816aa462--a16d1b2c-b683-4bba-82a3-b4304bacdb55.lovable.app-1784024804870.png" },
+      { property: "og:image", content: "https://menu-sparkle-verse.lovable.app/og-image.jpg" },
+      { name: "twitter:image", content: "https://menu-sparkle-verse.lovable.app/og-image.jpg" },
     ],
     links: [
       {

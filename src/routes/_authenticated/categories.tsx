@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, redirect } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
@@ -6,7 +6,14 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Trash2 } from "lucide-react";
 
-export const Route = createFileRoute("/_authenticated/categories")({ component: Categories });
+// Phase 1.1: Internal category management is off-limits to restaurant clients
+// until roles land. Redirect any authenticated user back to their dashboard.
+export const Route = createFileRoute("/_authenticated/categories")({
+  beforeLoad: () => {
+    throw redirect({ to: "/dashboard" });
+  },
+  component: Categories,
+});
 
 const SUGGESTIONS = [
   { name: "Pizza", emoji: "🍕" }, { name: "Burger", emoji: "🍔" },

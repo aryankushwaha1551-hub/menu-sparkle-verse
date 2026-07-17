@@ -3,11 +3,12 @@ import { useState } from "react";
 import type { ReactNode } from "react";
 import {
   LayoutDashboard,
-  FolderTree,
-  Boxes,
-  QrCode,
+  Eye,
   BarChart3,
+  CreditCard,
+  RefreshCw,
   Settings,
+  LifeBuoy,
   LogOut,
   Menu,
   X,
@@ -15,13 +16,17 @@ import {
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 
+// Restaurant-client portal only. Internal production routes (menu library,
+// categories, QR generator) are gated at their route files until the admin
+// role system lands in Phase 2.
 const NAV = [
   { to: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
-  { to: "/categories", label: "Categories", icon: FolderTree },
-  { to: "/menu", label: "3D Models", icon: Boxes },
-  { to: "/qr-codes", label: "QR Codes", icon: QrCode },
+  { to: "/menu-preview", label: "Menu Preview", icon: Eye },
   { to: "/analytics", label: "Analytics", icon: BarChart3 },
+  { to: "/table-cards", label: "Table Cards", icon: CreditCard },
+  { to: "/update-requests", label: "Update Requests", icon: RefreshCw },
   { to: "/settings", label: "Settings", icon: Settings },
+  { to: "/support", label: "Support", icon: LifeBuoy },
 ] as const;
 
 export function DashboardShell({ children }: { children: ReactNode }) {
