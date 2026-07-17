@@ -13,8 +13,12 @@ import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ViewSlugRouteImport } from './routes/view.$slug'
+import { Route as AuthenticatedUpdateRequestsRouteImport } from './routes/_authenticated/update-requests'
+import { Route as AuthenticatedTableCardsRouteImport } from './routes/_authenticated/table-cards'
+import { Route as AuthenticatedSupportRouteImport } from './routes/_authenticated/support'
 import { Route as AuthenticatedSettingsRouteImport } from './routes/_authenticated/settings'
 import { Route as AuthenticatedQrCodesRouteImport } from './routes/_authenticated/qr-codes'
+import { Route as AuthenticatedMenuPreviewRouteImport } from './routes/_authenticated/menu-preview'
 import { Route as AuthenticatedMenuRouteImport } from './routes/_authenticated/menu'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
 import { Route as AuthenticatedCategoriesRouteImport } from './routes/_authenticated/categories'
@@ -42,6 +46,22 @@ const ViewSlugRoute = ViewSlugRouteImport.update({
   path: '/view/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedUpdateRequestsRoute =
+  AuthenticatedUpdateRequestsRouteImport.update({
+    id: '/update-requests',
+    path: '/update-requests',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedTableCardsRoute = AuthenticatedTableCardsRouteImport.update({
+  id: '/table-cards',
+  path: '/table-cards',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedSupportRoute = AuthenticatedSupportRouteImport.update({
+  id: '/support',
+  path: '/support',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedSettingsRoute = AuthenticatedSettingsRouteImport.update({
   id: '/settings',
   path: '/settings',
@@ -52,6 +72,12 @@ const AuthenticatedQrCodesRoute = AuthenticatedQrCodesRouteImport.update({
   path: '/qr-codes',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedMenuPreviewRoute =
+  AuthenticatedMenuPreviewRouteImport.update({
+    id: '/menu-preview',
+    path: '/menu-preview',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedMenuRoute = AuthenticatedMenuRouteImport.update({
   id: '/menu',
   path: '/menu',
@@ -95,8 +121,12 @@ export interface FileRoutesByFullPath {
   '/categories': typeof AuthenticatedCategoriesRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/menu': typeof AuthenticatedMenuRouteWithChildren
+  '/menu-preview': typeof AuthenticatedMenuPreviewRoute
   '/qr-codes': typeof AuthenticatedQrCodesRoute
   '/settings': typeof AuthenticatedSettingsRoute
+  '/support': typeof AuthenticatedSupportRoute
+  '/table-cards': typeof AuthenticatedTableCardsRoute
+  '/update-requests': typeof AuthenticatedUpdateRequestsRoute
   '/view/$slug': typeof ViewSlugRoute
   '/menu/new': typeof AuthenticatedMenuNewRoute
   '/menu/': typeof AuthenticatedMenuIndexRoute
@@ -108,8 +138,12 @@ export interface FileRoutesByTo {
   '/analytics': typeof AuthenticatedAnalyticsRoute
   '/categories': typeof AuthenticatedCategoriesRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
+  '/menu-preview': typeof AuthenticatedMenuPreviewRoute
   '/qr-codes': typeof AuthenticatedQrCodesRoute
   '/settings': typeof AuthenticatedSettingsRoute
+  '/support': typeof AuthenticatedSupportRoute
+  '/table-cards': typeof AuthenticatedTableCardsRoute
+  '/update-requests': typeof AuthenticatedUpdateRequestsRoute
   '/view/$slug': typeof ViewSlugRoute
   '/menu/new': typeof AuthenticatedMenuNewRoute
   '/menu': typeof AuthenticatedMenuIndexRoute
@@ -124,8 +158,12 @@ export interface FileRoutesById {
   '/_authenticated/categories': typeof AuthenticatedCategoriesRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
   '/_authenticated/menu': typeof AuthenticatedMenuRouteWithChildren
+  '/_authenticated/menu-preview': typeof AuthenticatedMenuPreviewRoute
   '/_authenticated/qr-codes': typeof AuthenticatedQrCodesRoute
   '/_authenticated/settings': typeof AuthenticatedSettingsRoute
+  '/_authenticated/support': typeof AuthenticatedSupportRoute
+  '/_authenticated/table-cards': typeof AuthenticatedTableCardsRoute
+  '/_authenticated/update-requests': typeof AuthenticatedUpdateRequestsRoute
   '/view/$slug': typeof ViewSlugRoute
   '/_authenticated/menu/new': typeof AuthenticatedMenuNewRoute
   '/_authenticated/menu/': typeof AuthenticatedMenuIndexRoute
@@ -140,8 +178,12 @@ export interface FileRouteTypes {
     | '/categories'
     | '/dashboard'
     | '/menu'
+    | '/menu-preview'
     | '/qr-codes'
     | '/settings'
+    | '/support'
+    | '/table-cards'
+    | '/update-requests'
     | '/view/$slug'
     | '/menu/new'
     | '/menu/'
@@ -153,8 +195,12 @@ export interface FileRouteTypes {
     | '/analytics'
     | '/categories'
     | '/dashboard'
+    | '/menu-preview'
     | '/qr-codes'
     | '/settings'
+    | '/support'
+    | '/table-cards'
+    | '/update-requests'
     | '/view/$slug'
     | '/menu/new'
     | '/menu'
@@ -168,8 +214,12 @@ export interface FileRouteTypes {
     | '/_authenticated/categories'
     | '/_authenticated/dashboard'
     | '/_authenticated/menu'
+    | '/_authenticated/menu-preview'
     | '/_authenticated/qr-codes'
     | '/_authenticated/settings'
+    | '/_authenticated/support'
+    | '/_authenticated/table-cards'
+    | '/_authenticated/update-requests'
     | '/view/$slug'
     | '/_authenticated/menu/new'
     | '/_authenticated/menu/'
@@ -213,6 +263,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ViewSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/update-requests': {
+      id: '/_authenticated/update-requests'
+      path: '/update-requests'
+      fullPath: '/update-requests'
+      preLoaderRoute: typeof AuthenticatedUpdateRequestsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/table-cards': {
+      id: '/_authenticated/table-cards'
+      path: '/table-cards'
+      fullPath: '/table-cards'
+      preLoaderRoute: typeof AuthenticatedTableCardsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/support': {
+      id: '/_authenticated/support'
+      path: '/support'
+      fullPath: '/support'
+      preLoaderRoute: typeof AuthenticatedSupportRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/settings': {
       id: '/_authenticated/settings'
       path: '/settings'
@@ -225,6 +296,13 @@ declare module '@tanstack/react-router' {
       path: '/qr-codes'
       fullPath: '/qr-codes'
       preLoaderRoute: typeof AuthenticatedQrCodesRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/menu-preview': {
+      id: '/_authenticated/menu-preview'
+      path: '/menu-preview'
+      fullPath: '/menu-preview'
+      preLoaderRoute: typeof AuthenticatedMenuPreviewRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/menu': {
@@ -299,8 +377,12 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedCategoriesRoute: typeof AuthenticatedCategoriesRoute
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
   AuthenticatedMenuRoute: typeof AuthenticatedMenuRouteWithChildren
+  AuthenticatedMenuPreviewRoute: typeof AuthenticatedMenuPreviewRoute
   AuthenticatedQrCodesRoute: typeof AuthenticatedQrCodesRoute
   AuthenticatedSettingsRoute: typeof AuthenticatedSettingsRoute
+  AuthenticatedSupportRoute: typeof AuthenticatedSupportRoute
+  AuthenticatedTableCardsRoute: typeof AuthenticatedTableCardsRoute
+  AuthenticatedUpdateRequestsRoute: typeof AuthenticatedUpdateRequestsRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
@@ -308,8 +390,12 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedCategoriesRoute: AuthenticatedCategoriesRoute,
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
   AuthenticatedMenuRoute: AuthenticatedMenuRouteWithChildren,
+  AuthenticatedMenuPreviewRoute: AuthenticatedMenuPreviewRoute,
   AuthenticatedQrCodesRoute: AuthenticatedQrCodesRoute,
   AuthenticatedSettingsRoute: AuthenticatedSettingsRoute,
+  AuthenticatedSupportRoute: AuthenticatedSupportRoute,
+  AuthenticatedTableCardsRoute: AuthenticatedTableCardsRoute,
+  AuthenticatedUpdateRequestsRoute: AuthenticatedUpdateRequestsRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =
