@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, redirect } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
@@ -7,7 +7,14 @@ import { Input } from "@/components/ui/input";
 import { Download, Copy, RefreshCw } from "lucide-react";
 import { generateQrDataUrl, viewerUrl } from "@/lib/menuverse";
 
-export const Route = createFileRoute("/_authenticated/qr-codes")({ component: QRPage });
+// Phase 1.1: QR/table-card production is internal-only. Restaurant clients
+// see the Table Cards portal instead; this page ships with the admin portal.
+export const Route = createFileRoute("/_authenticated/qr-codes")({
+  beforeLoad: () => {
+    throw redirect({ to: "/dashboard" });
+  },
+  component: QRPage,
+});
 
 function QRPage() {
   const [rows, setRows] = useState<any[]>([]);
