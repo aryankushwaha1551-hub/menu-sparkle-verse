@@ -16,12 +16,10 @@ function TableCards() {
       </div>
       <div className="glass rounded-2xl p-14 text-center">
         <CreditCard className="h-10 w-10 mx-auto text-primary" />
-        <h3 className="font-display text-xl font-semibold mt-4">
-          Card management coming soon
-        </h3>
+        <h3 className="font-display text-xl font-semibold mt-4">Card management coming soon</h3>
         <p className="text-muted-foreground mt-2 max-w-md mx-auto">
-          Your MenuVerse account manager will share shipment details and
-          replacement requests will appear here.
+          Your MenuVerse account manager will share shipment details and replacement requests will
+          appear here.
         </p>
       </div>
     </div>

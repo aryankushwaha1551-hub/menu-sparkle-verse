@@ -1,20 +1,20 @@
 import QRCode from "qrcode";
 
 export function slugify(name: string): string {
-  const base = name
-    .toLowerCase()
-    .trim()
-    .replace(/[^a-z0-9\s-]/g, "")
-    .replace(/\s+/g, "-")
-    .replace(/-+/g, "-")
-    .slice(0, 40) || "dish";
+  const base =
+    name
+      .toLowerCase()
+      .trim()
+      .replace(/[^a-z0-9\s-]/g, "")
+      .replace(/\s+/g, "-")
+      .replace(/-+/g, "-")
+      .slice(0, 40) || "dish";
   const suffix = Math.random().toString(36).slice(2, 8);
   return `${base}-${suffix}`;
 }
 
 export function viewerUrl(slug: string): string {
-  const origin =
-    typeof window !== "undefined" ? window.location.origin : "https://menuverse.app";
+  const origin = typeof window !== "undefined" ? window.location.origin : "https://menuverse.app";
   return `${origin}/view/${slug}`;
 }
 

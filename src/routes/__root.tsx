@@ -79,14 +79,26 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "MenuVerse — Interactive 3D & AR Menus for Restaurants" },
-      { name: "description", content: "MenuVerse creates complete interactive menu experiences for restaurants, including signature dish presentations, branded NFC and QR table cards, setup, hosting, analytics, and maintenance. Done-for-you — no technical work required." },
+      {
+        name: "description",
+        content:
+          "MenuVerse creates complete interactive menu experiences for restaurants, including signature dish presentations, branded NFC and QR table cards, setup, hosting, analytics, and maintenance. Done-for-you — no technical work required.",
+      },
       { name: "author", content: "MenuVerse" },
       { property: "og:title", content: "MenuVerse — Interactive 3D & AR Menus for Restaurants" },
-      { property: "og:description", content: "Done-for-you interactive menus with branded NFC + QR table cards. Send your dish photos — MenuVerse handles setup, hosting, updates, analytics, and support." },
+      {
+        property: "og:description",
+        content:
+          "Done-for-you interactive menus with branded NFC + QR table cards. Send your dish photos — MenuVerse handles setup, hosting, updates, analytics, and support.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "MenuVerse — Interactive 3D & AR Menus for Restaurants" },
-      { name: "twitter:description", content: "Done-for-you interactive menus with branded NFC + QR table cards. Send your dish photos — MenuVerse handles the rest." },
+      {
+        name: "twitter:description",
+        content:
+          "Done-for-you interactive menus with branded NFC + QR table cards. Send your dish photos — MenuVerse handles the rest.",
+      },
       { property: "og:image", content: "https://menu-sparkle-verse.lovable.app/og-image.jpg" },
       { name: "twitter:image", content: "https://menu-sparkle-verse.lovable.app/og-image.jpg" },
     ],
@@ -98,7 +110,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&display=swap" },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&display=swap",
+      },
     ],
     scripts: [
       {

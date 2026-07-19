@@ -15,15 +15,25 @@ function Support() {
         </p>
       </div>
       <div className="grid gap-4 md:grid-cols-2">
-        <a href="mailto:hello@menuverse.in" className="glass rounded-2xl p-6 hover:border-primary/40 transition-colors">
+        <a
+          href="mailto:hello@menuverse.in"
+          className="glass rounded-2xl p-6 hover:border-primary/40 transition-colors"
+        >
           <Mail className="h-6 w-6 text-primary" />
           <h3 className="font-display text-xl font-semibold mt-3">Email</h3>
           <p className="text-muted-foreground text-sm mt-1">hello@menuverse.in</p>
         </a>
-        <a href="https://wa.me/919999999999" target="_blank" rel="noopener noreferrer" className="glass rounded-2xl p-6 hover:border-primary/40 transition-colors">
+        <a
+          href="https://wa.me/919999999999"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="glass rounded-2xl p-6 hover:border-primary/40 transition-colors"
+        >
           <MessageCircle className="h-6 w-6 text-primary" />
           <h3 className="font-display text-xl font-semibold mt-3">WhatsApp</h3>
-          <p className="text-muted-foreground text-sm mt-1">Priority chat with your account manager</p>
+          <p className="text-muted-foreground text-sm mt-1">
+            Priority chat with your account manager
+          </p>
         </a>
       </div>
       <div className="glass rounded-2xl p-6 flex items-start gap-4">
@@ -31,8 +41,8 @@ function Support() {
         <div>
           <h3 className="font-display text-lg font-semibold">Done-for-you promise</h3>
           <p className="text-muted-foreground text-sm mt-1">
-            MenuVerse owns setup, hosting, updates, and analytics. You will never
-            be asked to handle 3D files, hosting, or QR generation.
+            MenuVerse owns setup, hosting, updates, and analytics. You will never be asked to handle
+            3D files, hosting, or QR generation.
           </p>
         </div>
       </div>

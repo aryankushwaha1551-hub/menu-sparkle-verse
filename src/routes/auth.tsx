@@ -62,12 +62,19 @@ function AuthPage() {
             {mode === "login" ? "Welcome back" : "Create your account"}
           </h1>
           <p className="text-sm text-muted-foreground text-center mt-1">
-            {mode === "login" ? "Sign in to your MenuVerse account" : "Create an account to track your MenuVerse project"}
+            {mode === "login"
+              ? "Sign in to your MenuVerse account"
+              : "Create an account to track your MenuVerse project"}
           </p>
 
           <form onSubmit={onSubmit} className="mt-6 space-y-4">
             <div>
-              <Label htmlFor="email" className="text-xs uppercase tracking-wider text-muted-foreground">Email</Label>
+              <Label
+                htmlFor="email"
+                className="text-xs uppercase tracking-wider text-muted-foreground"
+              >
+                Email
+              </Label>
               <Input
                 id="email"
                 type="email"
@@ -79,7 +86,12 @@ function AuthPage() {
               />
             </div>
             <div>
-              <Label htmlFor="password" className="text-xs uppercase tracking-wider text-muted-foreground">Password</Label>
+              <Label
+                htmlFor="password"
+                className="text-xs uppercase tracking-wider text-muted-foreground"
+              >
+                Password
+              </Label>
               <Input
                 id="password"
                 type="password"
@@ -119,7 +131,9 @@ function AuthPage() {
           </div>
         </div>
         <p className="text-center text-xs text-muted-foreground mt-6">
-          <Link to="/" className="hover:text-primary transition-colors">← Back to home</Link>
+          <Link to="/" className="hover:text-primary transition-colors">
+            ← Back to home
+          </Link>
         </p>
       </div>
     </div>
