@@ -8,10 +8,16 @@ export const Route = createFileRoute("/_authenticated/menu/$id/edit")({ componen
 function Edit() {
   const { id } = Route.useParams();
   const [item, setItem] = useState<any>(null);
-  useEffect(() => { (async () => {
-    const { data } = await (supabase as any).from("menu_items").select("*").eq("id", id).maybeSingle();
-    setItem(data);
-  })(); }, [id]);
+  useEffect(() => {
+    (async () => {
+      const { data } = await (supabase as any)
+        .from("menu_items")
+        .select("*")
+        .eq("id", id)
+        .maybeSingle();
+      setItem(data);
+    })();
+  }, [id]);
   if (!item) return <div className="shimmer h-40 rounded-2xl" />;
   return (
     <div className="space-y-6">

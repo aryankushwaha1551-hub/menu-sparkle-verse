@@ -20,9 +20,8 @@ function MenuPreview() {
           Your live menu preview will appear here
         </h3>
         <p className="text-muted-foreground mt-2 max-w-md mx-auto">
-          Once the MenuVerse team publishes your dishes, you'll be able to walk
-          through the exact experience your guests see after tapping your table
-          card.
+          Once the MenuVerse team publishes your dishes, you'll be able to walk through the exact
+          experience your guests see after tapping your table card.
         </p>
       </div>
     </div>

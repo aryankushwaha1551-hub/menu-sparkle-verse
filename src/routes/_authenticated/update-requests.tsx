@@ -21,8 +21,7 @@ function UpdateRequests() {
           Send your update to the MenuVerse team
         </h3>
         <p className="text-muted-foreground mt-2 max-w-md mx-auto">
-          We'll process every update within one business day and notify you when
-          it goes live.
+          We'll process every update within one business day and notify you when it goes live.
         </p>
         <a href="mailto:hello@menuverse.in?subject=Menu%20update%20request">
           <Button className="mt-6 bg-primary text-primary-foreground rounded-xl">

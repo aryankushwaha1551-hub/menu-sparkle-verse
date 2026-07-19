@@ -7,7 +7,9 @@ function New() {
     <div className="space-y-6">
       <div>
         <h1 className="font-display text-3xl font-bold">Add a New Dish</h1>
-        <p className="text-muted-foreground mt-1">Fill in the details — a QR code is generated automatically.</p>
+        <p className="text-muted-foreground mt-1">
+          Fill in the details — a QR code is generated automatically.
+        </p>
       </div>
       <DishForm />
     </div>

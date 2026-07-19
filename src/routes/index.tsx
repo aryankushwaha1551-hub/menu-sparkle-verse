@@ -2,10 +2,30 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
-  Sparkles, ScanLine, Check, ArrowRight, Utensils,
-  Smartphone, Nfc, Palette, Settings2, ClipboardList, PackageCheck,
-  RefreshCw, Rocket, Send, Eye, ChefHat, Building2, Hotel, Cake,
-  Truck, Store, ShieldCheck, Layers, HandMetal,
+  Sparkles,
+  ScanLine,
+  Check,
+  ArrowRight,
+  Utensils,
+  Smartphone,
+  Nfc,
+  Palette,
+  Settings2,
+  ClipboardList,
+  PackageCheck,
+  RefreshCw,
+  Rocket,
+  Send,
+  Eye,
+  ChefHat,
+  Building2,
+  Hotel,
+  Cake,
+  Truck,
+  Store,
+  ShieldCheck,
+  Layers,
+  HandMetal,
 } from "lucide-react";
 
 import heroDish from "@/assets/hero-dish.jpg";
@@ -86,14 +106,21 @@ function Nav() {
         </a>
         <nav className="hidden lg:flex items-center gap-8 text-sm text-[color:var(--muted-foreground)]">
           {links.map((l) => (
-            <a key={l.href} href={l.href} className="hover:text-[color:var(--cream)] transition-colors">
+            <a
+              key={l.href}
+              href={l.href}
+              className="hover:text-[color:var(--cream)] transition-colors"
+            >
               {l.label}
             </a>
           ))}
         </nav>
         <div className="flex items-center gap-2">
           <a href="#demo" className="hidden sm:block">
-            <Button variant="ghost" className="text-[color:var(--cream)] hover:text-[color:var(--peach)]">
+            <Button
+              variant="ghost"
+              className="text-[color:var(--cream)] hover:text-[color:var(--peach)]"
+            >
               View Demo
             </Button>
           </a>
@@ -120,20 +147,28 @@ function Hero() {
             <Sparkles className="h-3 w-3" /> Done-for-you · 3D · AR · NFC + QR
           </div>
           <h1 className="font-display text-[2.4rem] leading-[1.05] sm:text-5xl md:text-6xl xl:text-7xl font-semibold cream-text">
-            Let guests <span className="italic peach-text">experience</span> every dish before they order.
+            Let guests <span className="italic peach-text">experience</span> every dish before they
+            order.
           </h1>
           <p className="mx-auto lg:mx-0 mt-6 max-w-xl text-base md:text-lg text-[color:var(--muted-foreground)] leading-relaxed">
-            Send us your dish photos and MenuVerse will create your complete interactive 3D and AR menu —
-            including branded NFC + QR table cards, setup, hosting and maintenance.
+            Send us your dish photos and MenuVerse will create your complete interactive 3D and AR
+            menu — including branded NFC + QR table cards, setup, hosting and maintenance.
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center lg:justify-start gap-3">
             <a href="#contact">
-              <Button size="lg" className="bg-[color:var(--peach)] text-[color:var(--primary-foreground)] hover:bg-[color:var(--peach-hover)] gold-glow rounded-full px-7 h-12 text-base font-semibold">
+              <Button
+                size="lg"
+                className="bg-[color:var(--peach)] text-[color:var(--primary-foreground)] hover:bg-[color:var(--peach-hover)] gold-glow rounded-full px-7 h-12 text-base font-semibold"
+              >
                 Get a Quote <ArrowRight className="ml-1 h-4 w-4" />
               </Button>
             </a>
             <a href="#demo">
-              <Button size="lg" variant="outline" className="rounded-full px-7 h-12 text-base border-[color:var(--sage)]/50 text-[color:var(--cream)] hover:bg-[color:var(--sage)]/10 bg-transparent">
+              <Button
+                size="lg"
+                variant="outline"
+                className="rounded-full px-7 h-12 text-base border-[color:var(--sage)]/50 text-[color:var(--cream)] hover:bg-[color:var(--sage)]/10 bg-transparent"
+              >
                 View Live Demo
               </Button>
             </a>
@@ -154,15 +189,35 @@ function HeroCollage() {
     <div className="relative mx-auto w-full max-w-[560px] aspect-[5/6] lg:aspect-[6/7]">
       {/* Dish photo */}
       <div className="absolute left-0 top-0 w-[62%] rounded-3xl overflow-hidden border border-[color:var(--sage)]/25 shadow-2xl">
-        <img src={heroDish} alt="Signature restaurant dish" width={800} height={800} className="w-full h-auto object-cover anim-float" />
+        <img
+          src={heroDish}
+          alt="Signature restaurant dish"
+          width={800}
+          height={800}
+          className="w-full h-auto object-cover anim-float"
+        />
       </div>
       {/* Phone showing interactive dish */}
       <div className="absolute right-0 top-[18%] w-[46%] rounded-[28px] overflow-hidden border border-[color:var(--sage)]/30 shadow-2xl sage-glow">
-        <img src={phoneDish} alt="Smartphone showing the interactive MenuVerse dish" width={512} height={640} loading="lazy" className="w-full h-auto object-cover" />
+        <img
+          src={phoneDish}
+          alt="Smartphone showing the interactive MenuVerse dish"
+          width={512}
+          height={640}
+          loading="lazy"
+          className="w-full h-auto object-cover"
+        />
       </div>
       {/* NFC card */}
       <div className="absolute left-[6%] bottom-0 w-[54%] rounded-2xl overflow-hidden border border-[color:var(--sage)]/25 shadow-xl">
-        <img src={nfcCard} alt="Branded MenuVerse NFC and QR table card" width={640} height={480} loading="lazy" className="w-full h-auto object-cover" />
+        <img
+          src={nfcCard}
+          alt="Branded MenuVerse NFC and QR table card"
+          width={640}
+          height={480}
+          loading="lazy"
+          className="w-full h-auto object-cover"
+        />
       </div>
       {/* Flow arrow chip */}
       <div className="absolute right-[4%] bottom-[4%] glass rounded-full px-3 py-1.5 text-[10px] uppercase tracking-widest sage-text flex items-center gap-1.5">
@@ -175,45 +230,97 @@ function HeroCollage() {
 /* ---------------- WHAT WE DELIVER ---------------- */
 function Delivers() {
   const items = [
-    { icon: ChefHat,    title: "Interactive Signature Dishes", desc: "Guests can rotate, zoom and explore selected dishes before ordering." },
-    { icon: Palette,    title: "Branded Digital Menu",         desc: "A premium menu experience designed around your restaurant's identity." },
-    { icon: Nfc,        title: "NFC + QR Table Cards",         desc: "Guests simply tap or scan to open the experience instantly." },
-    { icon: Settings2,  title: "Setup and Maintenance",        desc: "We handle launch, hosting, updates and ongoing support." },
+    {
+      icon: ChefHat,
+      title: "Interactive Signature Dishes",
+      desc: "Guests can rotate, zoom and explore selected dishes before ordering.",
+    },
+    {
+      icon: Palette,
+      title: "Branded Digital Menu",
+      desc: "A premium menu experience designed around your restaurant's identity.",
+    },
+    {
+      icon: Nfc,
+      title: "NFC + QR Table Cards",
+      desc: "Guests simply tap or scan to open the experience instantly.",
+    },
+    {
+      icon: Settings2,
+      title: "Setup and Maintenance",
+      desc: "We handle launch, hosting, updates and ongoing support.",
+    },
   ];
   return (
     <section id="experience" className="mx-auto max-w-7xl px-4 md:px-6 py-20 md:py-28">
       <div className="mx-auto max-w-2xl text-center mb-14">
-        <p className="text-xs uppercase tracking-[0.22em] sage-text mb-3">What MenuVerse delivers</p>
+        <p className="text-xs uppercase tracking-[0.22em] sage-text mb-3">
+          What MenuVerse delivers
+        </p>
         <h2 className="font-display text-3xl md:text-5xl font-semibold cream-text">
-          Everything your restaurant needs, <span className="italic peach-text">handled by us.</span>
+          Everything your restaurant needs,{" "}
+          <span className="italic peach-text">handled by us.</span>
         </h2>
       </div>
       <div className="grid gap-5 md:gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {items.map((it, i) => (
-          <div key={it.title} className="glass rounded-3xl p-6 md:p-7 transition-all hover:-translate-y-1 hover:sage-glow flex flex-col">
+          <div
+            key={it.title}
+            className="glass rounded-3xl p-6 md:p-7 transition-all hover:-translate-y-1 hover:sage-glow flex flex-col"
+          >
             <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-[color:var(--sage)]/15 sage-text mb-5 border border-[color:var(--sage)]/25">
               <it.icon className="h-5 w-5" />
             </div>
             <h3 className="font-display text-xl cream-text mb-2">{it.title}</h3>
-            <p className="text-sm text-[color:var(--muted-foreground)] leading-relaxed flex-1">{it.desc}</p>
+            <p className="text-sm text-[color:var(--muted-foreground)] leading-relaxed flex-1">
+              {it.desc}
+            </p>
             {i === 0 && (
               <div className="mt-5 rounded-xl overflow-hidden border border-[color:var(--sage)]/20">
-                <img src={heroDish} alt="Signature dish preview" width={400} height={220} loading="lazy" className="w-full h-28 object-cover" />
+                <img
+                  src={heroDish}
+                  alt="Signature dish preview"
+                  width={400}
+                  height={220}
+                  loading="lazy"
+                  className="w-full h-28 object-cover"
+                />
               </div>
             )}
             {i === 1 && (
               <div className="mt-5 rounded-xl overflow-hidden border border-[color:var(--sage)]/20">
-                <img src={phoneDish} alt="Branded digital menu preview" width={400} height={220} loading="lazy" className="w-full h-28 object-cover" />
+                <img
+                  src={phoneDish}
+                  alt="Branded digital menu preview"
+                  width={400}
+                  height={220}
+                  loading="lazy"
+                  className="w-full h-28 object-cover"
+                />
               </div>
             )}
             {i === 2 && (
               <div className="mt-5 rounded-xl overflow-hidden border border-[color:var(--sage)]/20">
-                <img src={nfcCard} alt="NFC and QR card preview" width={400} height={220} loading="lazy" className="w-full h-28 object-cover" />
+                <img
+                  src={nfcCard}
+                  alt="NFC and QR card preview"
+                  width={400}
+                  height={220}
+                  loading="lazy"
+                  className="w-full h-28 object-cover"
+                />
               </div>
             )}
             {i === 3 && (
               <div className="mt-5 rounded-xl overflow-hidden border border-[color:var(--sage)]/20">
-                <img src={restaurantInterior} alt="Restaurant setup" width={400} height={220} loading="lazy" className="w-full h-28 object-cover" />
+                <img
+                  src={restaurantInterior}
+                  alt="Restaurant setup"
+                  width={400}
+                  height={220}
+                  loading="lazy"
+                  className="w-full h-28 object-cover"
+                />
               </div>
             )}
           </div>
@@ -238,13 +345,16 @@ function NfcSection() {
       <div className="relative mx-auto max-w-7xl px-4 md:px-6 py-20 md:py-28">
         <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
           <div>
-            <p className="text-xs uppercase tracking-[0.22em] sage-text mb-3">Branded NFC + QR table cards</p>
+            <p className="text-xs uppercase tracking-[0.22em] sage-text mb-3">
+              Branded NFC + QR table cards
+            </p>
             <h2 className="font-display text-3xl md:text-5xl font-semibold cream-text">
-              One tap. One scan. <span className="italic peach-text">A completely new menu experience.</span>
+              One tap. One scan.{" "}
+              <span className="italic peach-text">A completely new menu experience.</span>
             </h2>
             <p className="mt-5 text-[color:var(--muted-foreground)] text-base md:text-lg leading-relaxed">
-              Place a branded MenuVerse card on every table. Guests can tap using NFC or scan the QR code
-              to instantly explore your restaurant's signature dishes.
+              Place a branded MenuVerse card on every table. Guests can tap using NFC or scan the QR
+              code to instantly explore your restaurant's signature dishes.
             </p>
             <ul className="mt-7 grid sm:grid-cols-2 gap-3">
               {bullets.map((b) => (
@@ -260,13 +370,34 @@ function NfcSection() {
 
           <div className="grid grid-cols-2 gap-4">
             <div className="col-span-2 rounded-3xl overflow-hidden border border-[color:var(--sage)]/25 shadow-xl">
-              <img src={tapNfc} alt="Guest tapping phone on branded NFC table card" width={1280} height={720} loading="lazy" className="w-full h-auto object-cover" />
+              <img
+                src={tapNfc}
+                alt="Guest tapping phone on branded NFC table card"
+                width={1280}
+                height={720}
+                loading="lazy"
+                className="w-full h-auto object-cover"
+              />
             </div>
             <div className="rounded-3xl overflow-hidden border border-[color:var(--sage)]/25">
-              <img src={nfcCard} alt="Front of branded MenuVerse table card" width={640} height={480} loading="lazy" className="w-full h-full object-cover" />
+              <img
+                src={nfcCard}
+                alt="Front of branded MenuVerse table card"
+                width={640}
+                height={480}
+                loading="lazy"
+                className="w-full h-full object-cover"
+              />
             </div>
             <div className="rounded-3xl overflow-hidden border border-[color:var(--sage)]/25 sage-glow">
-              <img src={phoneDish} alt="Interactive menu opening on the phone" width={640} height={480} loading="lazy" className="w-full h-full object-cover" />
+              <img
+                src={phoneDish}
+                alt="Interactive menu opening on the phone"
+                width={640}
+                height={480}
+                loading="lazy"
+                className="w-full h-full object-cover"
+              />
             </div>
           </div>
         </div>
@@ -278,11 +409,36 @@ function NfcSection() {
 /* ---------------- HOW IT WORKS ---------------- */
 function HowItWorks() {
   const steps = [
-    { icon: Send,          n: "01", title: "Send Your Details",     desc: "Share your restaurant information, menu, and clear photos of the dishes you want to feature." },
-    { icon: PackageCheck,  n: "02", title: "Choose Your Package",   desc: "Select the number of dishes and table cards required, then confirm the project." },
-    { icon: ChefHat,       n: "03", title: "We Create Everything",  desc: "Our team prepares your complete branded interactive menu experience." },
-    { icon: Eye,           n: "04", title: "Review and Approve",    desc: "You review the menu and request any necessary corrections before launch." },
-    { icon: Rocket,        n: "05", title: "Launch at Your Restaurant", desc: "We provide the NFC + QR cards and activate the complete experience." },
+    {
+      icon: Send,
+      n: "01",
+      title: "Send Your Details",
+      desc: "Share your restaurant information, menu, and clear photos of the dishes you want to feature.",
+    },
+    {
+      icon: PackageCheck,
+      n: "02",
+      title: "Choose Your Package",
+      desc: "Select the number of dishes and table cards required, then confirm the project.",
+    },
+    {
+      icon: ChefHat,
+      n: "03",
+      title: "We Create Everything",
+      desc: "Our team prepares your complete branded interactive menu experience.",
+    },
+    {
+      icon: Eye,
+      n: "04",
+      title: "Review and Approve",
+      desc: "You review the menu and request any necessary corrections before launch.",
+    },
+    {
+      icon: Rocket,
+      n: "05",
+      title: "Launch at Your Restaurant",
+      desc: "We provide the NFC + QR cards and activate the complete experience.",
+    },
   ];
   return (
     <section id="how" className="mx-auto max-w-7xl px-4 md:px-6 py-20 md:py-28">
@@ -312,7 +468,9 @@ function HowItWorks() {
                   <div className="font-display text-4xl peach-text opacity-70">{s.n}</div>
                 </div>
                 <h3 className="mt-5 font-display text-2xl cream-text">{s.title}</h3>
-                <p className="mt-2 text-[color:var(--muted-foreground)] leading-relaxed">{s.desc}</p>
+                <p className="mt-2 text-[color:var(--muted-foreground)] leading-relaxed">
+                  {s.desc}
+                </p>
               </div>
               <div className="hidden md:flex items-center justify-center">
                 <span className="h-3 w-3 rounded-full bg-[color:var(--peach)] shadow-[0_0_0_6px_color-mix(in_oklab,var(--peach)_20%,transparent)]" />
@@ -375,7 +533,9 @@ function DemoCard() {
         <img
           src={heroDish}
           alt="Sample signature dish rotating in 3D"
-          width={1280} height={960} loading="lazy"
+          width={1280}
+          height={960}
+          loading="lazy"
           className="absolute inset-0 w-full h-full object-cover anim-float"
         />
         {/* rotate control */}
@@ -390,14 +550,19 @@ function DemoCard() {
           <div className="text-[11px] uppercase tracking-widest sage-text">Aurum Restaurant</div>
           <h3 className="font-display text-2xl cream-text truncate">Malai Butter Chicken</h3>
           <p className="text-sm text-[color:var(--muted-foreground)] mt-1">
-            Tandoor-roasted chicken in a slow-cooked cashew, tomato and cream gravy, finished with kasuri methi.
+            Tandoor-roasted chicken in a slow-cooked cashew, tomato and cream gravy, finished with
+            kasuri methi.
           </p>
         </div>
         <div className="shrink-0 text-right">
           <div className="font-display text-2xl peach-text">₹ 620</div>
           <div className="mt-1 flex flex-wrap justify-end gap-1.5 text-[10px]">
-            <span className="px-2 py-0.5 rounded-full border border-[color:var(--sage)]/40 sage-text">Chef's Pick</span>
-            <span className="px-2 py-0.5 rounded-full border border-[color:var(--sage)]/40 sage-text">Mild</span>
+            <span className="px-2 py-0.5 rounded-full border border-[color:var(--sage)]/40 sage-text">
+              Chef's Pick
+            </span>
+            <span className="px-2 py-0.5 rounded-full border border-[color:var(--sage)]/40 sage-text">
+              Mild
+            </span>
           </div>
         </div>
       </div>
@@ -425,7 +590,14 @@ function RestaurantBenefits() {
     <section className="relative mx-auto max-w-7xl px-4 md:px-6 py-20 md:py-28">
       <div className="grid gap-12 lg:grid-cols-[1fr_1.1fr] lg:items-center">
         <div className="relative rounded-3xl overflow-hidden border border-[color:var(--sage)]/25 shadow-2xl">
-          <img src={arTable} alt="Signature dish appearing on the table in AR" width={1280} height={1024} loading="lazy" className="w-full h-auto object-cover" />
+          <img
+            src={arTable}
+            alt="Signature dish appearing on the table in AR"
+            width={1280}
+            height={1024}
+            loading="lazy"
+            className="w-full h-auto object-cover"
+          />
           <div className="absolute inset-x-0 bottom-0 p-5 bg-gradient-to-t from-[color:var(--background)] via-[color:var(--background)]/60 to-transparent">
             <div className="inline-flex items-center gap-2 text-xs uppercase tracking-widest sage-text">
               <HandMetal className="h-3.5 w-3.5" /> AR on the guest's own table
@@ -435,11 +607,15 @@ function RestaurantBenefits() {
         <div>
           <p className="text-xs uppercase tracking-[0.22em] sage-text mb-3">Restaurant benefits</p>
           <h2 className="font-display text-3xl md:text-5xl font-semibold cream-text">
-            Turn signature dishes into your <span className="italic peach-text">strongest sales experience.</span>
+            Turn signature dishes into your{" "}
+            <span className="italic peach-text">strongest sales experience.</span>
           </h2>
           <ul className="mt-8 grid sm:grid-cols-2 gap-3.5">
             {items.map((b) => (
-              <li key={b} className="flex items-start gap-3 rounded-2xl border border-[color:var(--sage)]/20 bg-[color:var(--surface)]/60 p-4">
+              <li
+                key={b}
+                className="flex items-start gap-3 rounded-2xl border border-[color:var(--sage)]/20 bg-[color:var(--surface)]/60 p-4"
+              >
                 <span className="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[color:var(--sage)]/20 border border-[color:var(--sage)]/40 sage-text">
                   <Check className="h-3.5 w-3.5" />
                 </span>
@@ -460,7 +636,14 @@ function Analytics() {
       <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
         <div className="order-2 lg:order-1">
           <div className="rounded-3xl overflow-hidden border border-[color:var(--sage)]/25 shadow-2xl">
-            <img src={ownerAnalytics} alt="Restaurant owner viewing MenuVerse analytics" width={1280} height={1024} loading="lazy" className="w-full h-auto object-cover" />
+            <img
+              src={ownerAnalytics}
+              alt="Restaurant owner viewing MenuVerse analytics"
+              width={1280}
+              height={1024}
+              loading="lazy"
+              className="w-full h-auto object-cover"
+            />
           </div>
           <div className="mt-4 grid grid-cols-3 gap-3 text-center">
             {[
@@ -468,21 +651,28 @@ function Analytics() {
               { k: "Top dishes", v: "Ranked" },
               { k: "Device split", v: "iOS / Android" },
             ].map((m) => (
-              <div key={m.k} className="rounded-2xl border border-[color:var(--sage)]/25 bg-[color:var(--card)]/60 p-3">
-                <div className="text-[10px] uppercase tracking-widest text-[color:var(--muted-foreground)]">{m.k}</div>
+              <div
+                key={m.k}
+                className="rounded-2xl border border-[color:var(--sage)]/25 bg-[color:var(--card)]/60 p-3"
+              >
+                <div className="text-[10px] uppercase tracking-widest text-[color:var(--muted-foreground)]">
+                  {m.k}
+                </div>
                 <div className="mt-1 font-display text-base cream-text">{m.v}</div>
               </div>
             ))}
           </div>
           <p className="mt-3 text-[11px] text-[color:var(--muted-foreground)] italic">
-            Sample dashboard preview. MenuVerse provides and maintains this system for your restaurant.
+            Sample dashboard preview. MenuVerse provides and maintains this system for your
+            restaurant.
           </p>
         </div>
 
         <div className="order-1 lg:order-2">
           <p className="text-xs uppercase tracking-[0.22em] sage-text mb-3">Analytics</p>
           <h2 className="font-display text-3xl md:text-5xl font-semibold cream-text">
-            Understand what catches <span className="italic peach-text">your guests' attention.</span>
+            Understand what catches{" "}
+            <span className="italic peach-text">your guests' attention.</span>
           </h2>
           <p className="mt-5 text-[color:var(--muted-foreground)] md:text-lg leading-relaxed">
             See how guests engage with your menu — which dishes they open, when they open them, and
@@ -578,7 +768,9 @@ function Packages() {
             <p className="mt-1.5 text-sm text-[color:var(--muted-foreground)]">{p.tagline}</p>
             <div className="mt-5 rounded-xl bg-[color:var(--background)]/60 border border-[color:var(--sage)]/20 px-4 py-3">
               <div className="text-[11px] uppercase tracking-widest sage-text">Custom pricing</div>
-              <div className="mt-1 font-display text-lg peach-text">Tailored to your restaurant</div>
+              <div className="mt-1 font-display text-lg peach-text">
+                Tailored to your restaurant
+              </div>
             </div>
             <ul className="mt-6 space-y-3 text-sm flex-1">
               {p.features.map((f) => (
@@ -612,11 +804,11 @@ function Packages() {
 /* ---------------- TRUST ---------------- */
 function TrustSection() {
   const kinds = [
-    { icon: Store,     label: "Premium cafés" },
-    { icon: Utensils,  label: "Restaurants" },
-    { icon: Hotel,     label: "Hotels and resorts" },
-    { icon: Cake,      label: "Bakeries & dessert studios" },
-    { icon: Truck,     label: "Cloud kitchens" },
+    { icon: Store, label: "Premium cafés" },
+    { icon: Utensils, label: "Restaurants" },
+    { icon: Hotel, label: "Hotels and resorts" },
+    { icon: Cake, label: "Bakeries & dessert studios" },
+    { icon: Truck, label: "Cloud kitchens" },
     { icon: Building2, label: "Restaurant groups" },
   ];
   return (
@@ -629,7 +821,10 @@ function TrustSection() {
       </div>
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4">
         {kinds.map((k) => (
-          <div key={k.label} className="flex flex-col items-center text-center gap-2.5 rounded-2xl border border-[color:var(--sage)]/25 bg-[color:var(--surface)]/60 p-5 hover:sage-glow transition-all">
+          <div
+            key={k.label}
+            className="flex flex-col items-center text-center gap-2.5 rounded-2xl border border-[color:var(--sage)]/25 bg-[color:var(--surface)]/60 p-5 hover:sage-glow transition-all"
+          >
             <div className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-[color:var(--sage)]/15 sage-text border border-[color:var(--sage)]/25">
               <k.icon className="h-5 w-5" />
             </div>
@@ -653,20 +848,31 @@ function FinalCta() {
         <div className="relative grid gap-10 lg:grid-cols-[1.1fr_1fr] items-center">
           <div>
             <h2 className="font-display text-3xl md:text-5xl font-semibold cream-text leading-[1.05]">
-              Your guests should not have to <span className="italic peach-text">imagine the dish.</span>
+              Your guests should not have to{" "}
+              <span className="italic peach-text">imagine the dish.</span>
             </h2>
-            <p className="mt-3 font-display text-2xl md:text-3xl cream-text">Let them experience it.</p>
+            <p className="mt-3 font-display text-2xl md:text-3xl cream-text">
+              Let them experience it.
+            </p>
             <p className="mt-5 text-[color:var(--muted-foreground)] md:text-lg leading-relaxed max-w-xl">
-              Send us your menu and dish photos. We'll create and launch the complete MenuVerse experience for your restaurant.
+              Send us your menu and dish photos. We'll create and launch the complete MenuVerse
+              experience for your restaurant.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <a href="#contact">
-                <Button size="lg" className="bg-[color:var(--peach)] text-[color:var(--primary-foreground)] hover:bg-[color:var(--peach-hover)] gold-glow rounded-full px-7 h-12 text-base font-semibold">
+                <Button
+                  size="lg"
+                  className="bg-[color:var(--peach)] text-[color:var(--primary-foreground)] hover:bg-[color:var(--peach-hover)] gold-glow rounded-full px-7 h-12 text-base font-semibold"
+                >
                   Get a Quote <ArrowRight className="ml-1 h-4 w-4" />
                 </Button>
               </a>
               <a href="#demo">
-                <Button size="lg" variant="outline" className="rounded-full px-7 h-12 text-base border-[color:var(--sage)]/50 text-[color:var(--cream)] hover:bg-[color:var(--sage)]/10 bg-transparent">
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="rounded-full px-7 h-12 text-base border-[color:var(--sage)]/50 text-[color:var(--cream)] hover:bg-[color:var(--sage)]/10 bg-transparent"
+                >
                   View Demo
                 </Button>
               </a>
@@ -674,13 +880,34 @@ function FinalCta() {
           </div>
           <div className="relative aspect-[5/4]">
             <div className="absolute left-0 top-0 w-[70%] rounded-2xl overflow-hidden border border-[color:var(--sage)]/25">
-              <img src={heroDish} alt="Premium signature dish" width={720} height={720} loading="lazy" className="w-full h-full object-cover" />
+              <img
+                src={heroDish}
+                alt="Premium signature dish"
+                width={720}
+                height={720}
+                loading="lazy"
+                className="w-full h-full object-cover"
+              />
             </div>
             <div className="absolute right-0 top-[15%] w-[46%] rounded-[24px] overflow-hidden border border-[color:var(--sage)]/25 sage-glow">
-              <img src={phoneDish} alt="Phone showing dish" width={480} height={600} loading="lazy" className="w-full h-full object-cover" />
+              <img
+                src={phoneDish}
+                alt="Phone showing dish"
+                width={480}
+                height={600}
+                loading="lazy"
+                className="w-full h-full object-cover"
+              />
             </div>
             <div className="absolute left-[8%] bottom-0 w-[52%] rounded-2xl overflow-hidden border border-[color:var(--sage)]/25">
-              <img src={nfcCard} alt="Branded NFC and QR card" width={640} height={480} loading="lazy" className="w-full h-full object-cover" />
+              <img
+                src={nfcCard}
+                alt="Branded NFC and QR card"
+                width={640}
+                height={480}
+                loading="lazy"
+                className="w-full h-full object-cover"
+              />
             </div>
           </div>
         </div>
@@ -716,7 +943,10 @@ function ContactForm() {
         </div>
       ) : (
         <form
-          onSubmit={(e) => { e.preventDefault(); setSent(true); }}
+          onSubmit={(e) => {
+            e.preventDefault();
+            setSent(true);
+          }}
           className="glass rounded-3xl p-6 md:p-8 grid gap-4 md:grid-cols-2"
         >
           <Field label="Restaurant name" name="restaurant" required />
@@ -724,12 +954,42 @@ function ContactForm() {
           <Field label="Phone number" name="phone" type="tel" required />
           <Field label="Email address" name="email" type="email" required />
           <Field label="City" name="city" required />
-          <SelectField label="Restaurant type" name="type" options={["Restaurant", "Café", "Hotel / Resort", "Bakery / Dessert studio", "Cloud kitchen", "Restaurant group"]} />
-          <Field label="Number of dishes to feature" name="dishes" type="number" placeholder="e.g. 8" />
-          <Field label="Approximate number of tables" name="tables" type="number" placeholder="e.g. 20" />
+          <SelectField
+            label="Restaurant type"
+            name="type"
+            options={[
+              "Restaurant",
+              "Café",
+              "Hotel / Resort",
+              "Bakery / Dessert studio",
+              "Cloud kitchen",
+              "Restaurant group",
+            ]}
+          />
+          <Field
+            label="Number of dishes to feature"
+            name="dishes"
+            type="number"
+            placeholder="e.g. 8"
+          />
+          <Field
+            label="Approximate number of tables"
+            name="tables"
+            type="number"
+            placeholder="e.g. 20"
+          />
           <FileField label="Menu upload (PDF, image)" name="menu" accept=".pdf,image/*" />
           <FileField label="Dish photos (multiple)" name="dishPhotos" accept="image/*" multiple />
-          <SelectField label="Preferred package" name="pkg" options={["Signature Experience", "Restaurant Showcase", "Custom Experience", "Not sure — please advise"]} />
+          <SelectField
+            label="Preferred package"
+            name="pkg"
+            options={[
+              "Signature Experience",
+              "Restaurant Showcase",
+              "Custom Experience",
+              "Not sure — please advise",
+            ]}
+          />
           <div className="md:col-span-2">
             <label className="block text-sm text-[color:var(--cream)]/90 mb-1.5">Message</label>
             <textarea
@@ -744,7 +1004,11 @@ function ContactForm() {
               <ShieldCheck className="h-3.5 w-3.5 mt-0.5 sage-text shrink-0" />
               Your files are used only to assess and prepare your restaurant project.
             </p>
-            <Button type="submit" size="lg" className="bg-[color:var(--peach)] text-[color:var(--primary-foreground)] hover:bg-[color:var(--peach-hover)] gold-glow rounded-full px-7 h-12 font-semibold">
+            <Button
+              type="submit"
+              size="lg"
+              className="bg-[color:var(--peach)] text-[color:var(--primary-foreground)] hover:bg-[color:var(--peach-hover)] gold-glow rounded-full px-7 h-12 font-semibold"
+            >
               Request My MenuVerse Quote
             </Button>
           </div>
@@ -776,14 +1040,30 @@ function SelectField({ label, name, options }: { label: string; name: string; op
         defaultValue=""
         className="w-full rounded-xl bg-[color:var(--background)]/70 border border-[color:var(--sage)]/25 focus:border-[color:var(--peach)]/60 outline-none px-3.5 py-2.5 text-sm cream-text"
       >
-        <option value="" disabled>Select…</option>
-        {options.map((o) => <option key={o} value={o}>{o}</option>)}
+        <option value="" disabled>
+          Select…
+        </option>
+        {options.map((o) => (
+          <option key={o} value={o}>
+            {o}
+          </option>
+        ))}
       </select>
     </div>
   );
 }
 
-function FileField({ label, name, accept, multiple }: { label: string; name: string; accept?: string; multiple?: boolean }) {
+function FileField({
+  label,
+  name,
+  accept,
+  multiple,
+}: {
+  label: string;
+  name: string;
+  accept?: string;
+  multiple?: boolean;
+}) {
   return (
     <div>
       <label className="block text-sm text-[color:var(--cream)]/90 mb-1.5">{label}</label>
@@ -813,11 +1093,21 @@ function Footer() {
           <span className="font-display text-xl font-semibold cream-text">MenuVerse</span>
         </div>
         <nav className="flex flex-wrap justify-center gap-5 text-sm text-[color:var(--muted-foreground)]">
-          <a href="#experience" className="hover:text-[color:var(--cream)]">Experience</a>
-          <a href="#how" className="hover:text-[color:var(--cream)]">How It Works</a>
-          <a href="#nfc" className="hover:text-[color:var(--cream)]">NFC + QR</a>
-          <a href="#packages" className="hover:text-[color:var(--cream)]">Packages</a>
-          <a href="#contact" className="hover:text-[color:var(--cream)]">Contact</a>
+          <a href="#experience" className="hover:text-[color:var(--cream)]">
+            Experience
+          </a>
+          <a href="#how" className="hover:text-[color:var(--cream)]">
+            How It Works
+          </a>
+          <a href="#nfc" className="hover:text-[color:var(--cream)]">
+            NFC + QR
+          </a>
+          <a href="#packages" className="hover:text-[color:var(--cream)]">
+            Packages
+          </a>
+          <a href="#contact" className="hover:text-[color:var(--cream)]">
+            Contact
+          </a>
         </nav>
         <p className="text-xs md:text-sm text-[color:var(--muted-foreground)] md:text-right">
           © {new Date().getFullYear()} MenuVerse · Crafted for hospitality.
